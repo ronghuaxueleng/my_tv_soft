@@ -40,7 +40,7 @@ jobs:
       - name: 开始同步
         run: |
           shopt -s extglob
-          git clone https://github.com/qiandao-today/qiandao.git soft
+          git clone https://github.com/once666/mysoft.git soft
           cd soft
           rm -rf .git
           rm -rf .github
