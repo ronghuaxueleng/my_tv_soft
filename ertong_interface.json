@@ -61,6 +61,8 @@
         },
         { "name": "线路01", "type": 1, "url": "http://lanlan.ckflv.cn/?url=", "ext": { "flag": ["qiyi", "qq", "letv", "sohu", "youku", "mgtv", "bilibili", "wasu", "xigua", "1905"] } },
         { "name": "线路02", "type": 1, "url": "http://rxjx.kuanjv.com/allm3u8.php?url=" },
+        { "name": "无尽资源", "type": 1, "url": "https://jx.wujinkk.com/dplayer/?url=" },
+        { "name": "量子资源", "type": 1, "url": "https://lziplayer.com/?url=" },
         { "name": "主解析", "type": 1, "url": "https://za.kuanjv.com/?url=" },
         { "name": "自动", "type": 1, "url": "http://110.42.2.115:880/analysis/json/?uid=2100&my=fgjnoqstLMRUZ03489&url=", "ext": { "flag": ["qq", "qiyi", "mgtv", "youku", "letv", "sohu", "xigua", "1905"], "header": { "User-Agent": "Dart/2.14 (dart:io)" } } },
         { "name": "自动1", "type": 1, "url": "http://110.42.2.115:880/analysis/json/?uid=2100&my=fgjnoqstLMRUZ03489&url=" },
