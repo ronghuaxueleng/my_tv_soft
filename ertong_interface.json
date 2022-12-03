@@ -15,9 +15,6 @@
             "name": "儿童乐园 |Bili|",
             "type": 3,
             "api": "csp_Bili",
-            "searchable": 0,
-            "quickSearch": 0,
-            "filterable": 1,
             "ext": "http://39.103.212.40:2001/sties/json/儿童乐园.json",
             "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
         },
@@ -26,9 +23,6 @@
             "name": "学习园地 |Bili|",
             "type": 3,
             "api": "csp_Bili",
-            "searchable": 0,
-            "quickSearch": 0,
-            "filterable": 1,
             "ext": "http://39.103.212.40:2001/sties/json/学习园地.json",
             "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
         },
@@ -37,9 +31,6 @@
             "name": "音乐现场 |Bili|",
             "type": 3,
             "api": "csp_Bili",
-            "searchable": 0,
-            "quickSearch": 0,
-            "filterable": 1,
             "ext": "http://39.103.212.40:2001/sties/json/音乐现场.json",
             "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
         }
