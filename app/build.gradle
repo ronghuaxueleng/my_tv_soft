@@ -7,7 +7,7 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.github.catvod.loader"
+        applicationId "com.github.catvod.demo"
         minSdkVersion rootProject.miniSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode rootProject.appVersionCode

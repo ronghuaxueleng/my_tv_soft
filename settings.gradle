@@ -1,2 +1,2 @@
-rootProject.name = "CatVodTVJarLoader"
+rootProject.name = "myTvJar"
 include ':app'
