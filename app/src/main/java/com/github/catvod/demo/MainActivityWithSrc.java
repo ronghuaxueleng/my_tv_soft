@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity {
+public class MainActivityWithSrc extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
