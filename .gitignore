@@ -13,7 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
-/app/proguardMapping.txt 
+/app/proguardMapping.txt
+/app/build
 /LTDecodeSpace
 /adb.exe
 /LTDecodeNew3.exe
