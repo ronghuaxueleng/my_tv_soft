@@ -1,0 +1,740 @@
+{
+    "wallpaper": "http://39.103.212.40:2001/picture/takagen99.png",
+    "spider": "http://39.103.212.40:2001/spider/spider20221120.jar;md5;50041e58be27b2d9e9f67780b22f1773",
+    "lives": [
+        {
+            "group": "redirect",
+            "channels": [
+                {
+                    "name": "live",
+                    "urls": [
+                        "proxy://do=live&type=txt&ext=aHR0cDovLzM5LjEwMy4yMTIuNDA6MjAwMS9saXZlcy9saXZlMjIxMTIwLnR4dA=="
+                    ]
+                }
+            ]
+        }
+    ],
+    "sites": [
+        {
+            "key": "Bttoo",
+            "name": "Bttoo |Spider|",
+            "type": 3,
+            "api": "csp_Bttoo",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "Lib",
+            "name": "Libvio |Spider|",
+            "type": 3,
+            "api": "csp_Lib",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "Coke",
+            "name": "Cokemv |Spider|",
+            "type": 3,
+            "api": "csp_Cokemv",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "csp_SP293",
+            "name": "293 影视 |Spider|",
+            "type": 3,
+            "api": "csp_SP293",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "360",
+            "name": "360 影视 |Spider|",
+            "type": 3,
+            "api": "csp_SP360",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "Dy1010",
+            "name": "电影1010 |Spider|",
+            "type": 3,
+            "api": "csp_Dy1010",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "IQIYI",
+            "name": "爱奇艺果 |Spider|",
+            "type": 3,
+            "api": "csp_IQIYI",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "QQ",
+            "name": "腾讯视频 |Spider|",
+            "type": 3,
+            "api": "csp_QQ",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "MGTV",
+            "name": "芒果影视 |Spider|",
+            "type": 3,
+            "api": "csp_Mgtv",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "Kunyu77",
+            "name": "酷云七七 |Spider|",
+            "type": 3,
+            "api": "csp_Kunyu77",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "AppTT",
+            "name": "图图影视 |Spider|",
+            "type": 3,
+            "api": "csp_AppTT",
+            "playerType": 1,
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "Fantuan",
+            "name": "饭团影院 |Spider|",
+            "type": 3,
+            "api": "csp_Fantuan",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "Ysgc",
+            "name": "影视工厂 |Spider|",
+            "type": 3,
+            "api": "csp_Ysgc",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "Lgyy",
+            "name": "蓝光影院 |Spider|",
+            "type": 3,
+            "api": "csp_Lgyy",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "csp_Lezh",
+            "name": "乐猪影院 |Spider|",
+            "type": 3,
+            "api": "csp_Lezhu",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "小苹果",
+            "name": "苹果影视 |Spider|",
+            "type": 3,
+            "api": "csp_LiteApple",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "Nkdy",
+            "name": "南柯电影 |Spider|",
+            "type": 3,
+            "api": "csp_Nkdy",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "csp_Zxzj",
+            "name": "在线之家 |Spider|",
+            "type": 3,
+            "api": "csp_Zxzj",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "Dm84",
+            "name": "动漫巴士 |Spider|",
+            "type": 3,
+            "api": "csp_Dm84",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "csp_kuaikan",
+            "name": "快看视频 |Spider|",
+            "type": 3,
+            "api": "csp_Kuaikan",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "csp_Mjxq",
+            "name": "美剧星球 |Spider|",
+            "type": 3,
+            "api": "csp_Mjxq",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "哔哩",
+            "name": "哔哩哔哩 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/哔哩哔哩.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key": "儿童",
+            "name": "儿童乐园 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/儿童乐园.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key": "学习",
+            "name": "学习园地 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/学习园地.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key": "软件",
+            "name": "软件教程 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/软件教程.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key": "美食",
+            "name": "美食合集 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/美食合集.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key": "音乐",
+            "name": "音乐现场 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/音乐现场.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key": "热舞",
+            "name": "女团热舞 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/女团热舞.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key": "戏曲",
+            "name": "精选戏曲 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/精选戏曲.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key": "赛事",
+            "name": "体育赛事 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/体育赛事.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key": "棋牌",
+            "name": "棋牌娱乐 |Bili|",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/棋牌娱乐.json",
+            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+        },
+        {
+            "key" : "drpy_js_优酷",
+            "name" : "优酷视频 |DRPY|",
+            "type" : 3,
+            "api" : "http://39.103.212.40:2003/2211200901/lib/drpy.min.js",
+            "ext" : "http://39.103.212.40:2003/2211200901/js/优酷.js",
+            "jar": "http://39.103.212.40:2003/2211200901/w.jar"
+        },
+        {
+            "key": "csp_Alist",
+            "name": "Alist网盘 |Alist|",
+            "type": 3,
+            "api": "csp_Alist",
+            "ext": "http://39.103.212.40:2001/sties/json/Alist网盘.json"
+        },
+        {
+            "key": "csp_xpath_酷奇MTV",
+            "name": "酷奇MTV |XP|",
+            "type": 3,
+            "api": "csp_XPath",
+            "ext": "http://39.103.212.40:2001/sties/json/酷奇MTV.json"
+        },
+        {
+            "key": "csp_xpath_酷狗MV",
+            "name": "酷狗音乐 |XY|",
+            "type": 3,
+            "api": "csp_XYQBiu",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "http://39.103.212.40:2001/sties/json/酷狗音乐.json"
+        },
+        {
+            "key": "csp_biubiu_VOFLIX",
+            "name": "VOFLIX |XB|",
+            "type": 3,
+            "api": "csp_XBiubiu",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 0,
+            "ext": "http://39.103.212.40:2001/sties/json/VOFLIX(XB).json"
+        },
+        {
+            "key": "csp_biubiu_乐猪影视",
+            "name": "乐猪影视 |XB|",
+            "type": 3,
+            "api": "csp_XBiubiu",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 0,
+            "ext": "http://39.103.212.40:2001/sties/json/乐猪影视(XB).json"
+        },
+        {
+            "key": "csp_xpath_Libvio",
+            "name": "Libvio |XBMF|",
+            "type": 3,
+            "api": "csp_XPathMacFilter",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "http://39.103.212.40:2001/sties/json/Libvio(XPMF).json"
+        },
+        {
+            "key": "csp_Gitcafe",
+            "name": "小纸条 |仅搜索|",
+            "type": 3,
+            "api": "csp_Gitcafe",
+            "ext": "http://39.103.212.40:2001/sties/alitoken/token.json"
+        },
+        {
+            "key": "csp_FindZY",
+            "name": "找资源 |仅搜索|",
+            "type": 3,
+            "api": "csp_FindZY",
+            "ext": "http://39.103.212.40:2001/sties/alitoken/token.json"
+        },
+        {
+            "key": "csp_AliPS",
+            "name": "盘搜 |仅搜索|",
+            "type": 3,
+            "api": "csp_AliPS",
+            "ext": "http://39.103.212.40:2001/sties/alitoken/token.json"
+        },
+        {
+            "key": "csp_Yiso",
+            "name": "易搜 |仅搜索|",
+            "type": 3,
+            "api": "csp_Yiso",
+            "ext": "http://39.103.212.40:2001/sties/alitoken/token.json"
+        },
+        {
+            "key": "Upyunso",
+            "name": "云搜 |仅搜索|",
+            "type": 3,
+            "api": "csp_Upyunso",
+            "ext": "http://39.103.212.40:2001/sties/alitoken/token.json"
+        }
+    ],
+    "parses": [
+        {
+            "name": "聚合",
+            "type": 3,
+            "url": "Demo"
+        },
+        {
+            "name": "并发",
+            "type": 2,
+            "url": "Parallel"
+        },
+        {
+            "name": "轮询",
+            "type": 2,
+            "url": "Sequence"
+        },
+        {
+            "name": "线路01",
+            "type": 1,
+            "url": "http://newjiexi.gotka.top/keyu3.php?url=",
+            "ext": {
+                "flag": [
+                    "qq",
+                    "腾讯",
+                    "qiyi",
+                    "爱奇艺",
+                    "奇艺",
+                    "youku",
+                    "优酷",
+                    "mgtv",
+                    "芒果",
+                    "letv",
+                    "乐视",
+                    "pptv",
+                    "PPTV",
+                    "sohu",
+                    "bilibili",
+                    "哔哩哔哩",
+                    "哔哩"
+                ],
+                "header": {
+                    "User-Agent": "okhttp/4.1.0"
+                }
+            }
+        },
+        {
+            "name": "线路02",
+            "type": 1,
+            "url": "http://lanlan.ckflv.cn/?url=",
+            "ext": {
+                "flag": [
+                    "qiyi",
+                    "qq",
+                    "letv",
+                    "sohu",
+                    "youku",
+                    "mgtv",
+                    "bilibili",
+                    "wasu",
+                    "xigua",
+                    "1905"
+                ]
+            }
+        },
+        {
+            "name": "线路03",
+            "type": 1,
+            "url": "http://rxjx.kuanjv.com/allm3u8.php?url="
+        }
+    ],
+    "flags": [
+        "youku",
+        "qq",
+        "QQ",
+        "iqiyi",
+        "qiyi",
+        "letv",
+        "sohu",
+        "tudou",
+        "pptv",
+        "PPTV",
+        "mgtv",
+        "ltnb",
+        "rx",
+        "CL4K",
+        "xfyun",
+        "wuduzy",
+        "wasu",
+        "bilibili",
+        "renrenmi",
+        "xmm",
+        "xigua",
+        "m1905",
+        "funshion",
+        "优酷",
+        "芒果",
+        "腾讯",
+        "爱奇艺",
+        "奇艺",
+        "哔哩哔哩",
+        "哔哩"
+    ],
+    "ijk": [
+        {
+            "group": "软解码",
+            "options": [
+                {
+                    "category": 4,
+                    "name": "opensles",
+                    "value": "0"
+                },
+                {
+                    "category": 4,
+                    "name": "overlay-format",
+                    "value": "842225234"
+                },
+                {
+                    "category": 4,
+                    "name": "framedrop",
+                    "value": "1"
+                },
+                {
+                    "category": 4,
+                    "name": "soundtouch",
+                    "value": "1"
+                },
+                {
+                    "category": 4,
+                    "name": "start-on-prepared",
+                    "value": "1"
+                },
+                {
+                    "category": 1,
+                    "name": "http-detect-range-support",
+                    "value": "0"
+                },
+                {
+                    "category": 1,
+                    "name": "fflags",
+                    "value": "fastseek"
+                },
+                {
+                    "category": 2,
+                    "name": "skip_loop_filter",
+                    "value": "48"
+                },
+                {
+                    "category": 4,
+                    "name": "reconnect",
+                    "value": "1"
+                },
+                {
+                    "category": 4,
+                    "name": "enable-accurate-seek",
+                    "value": "0"
+                },
+                {
+                    "category": 4,
+                    "name": "mediacodec",
+                    "value": "0"
+                },
+                {
+                    "category": 4,
+                    "name": "mediacodec-auto-rotate",
+                    "value": "0"
+                },
+                {
+                    "category": 4,
+                    "name": "mediacodec-handle-resolution-change",
+                    "value": "0"
+                },
+                {
+                    "category": 4,
+                    "name": "mediacodec-hevc",
+                    "value": "0"
+                },
+                {
+                    "category": 1,
+                    "name": "dns_cache_timeout",
+                    "value": "600000000"
+                }
+            ]
+        },
+        {
+            "group": "硬解码",
+            "options": [
+                {
+                    "category": 4,
+                    "name": "opensles",
+                    "value": "0"
+                },
+                {
+                    "category": 4,
+                    "name": "overlay-format",
+                    "value": "842225234"
+                },
+                {
+                    "category": 4,
+                    "name": "framedrop",
+                    "value": "1"
+                },
+                {
+                    "category": 4,
+                    "name": "soundtouch",
+                    "value": "1"
+                },
+                {
+                    "category": 4,
+                    "name": "start-on-prepared",
+                    "value": "1"
+                },
+                {
+                    "category": 1,
+                    "name": "http-detect-range-support",
+                    "value": "0"
+                },
+                {
+                    "category": 1,
+                    "name": "fflags",
+                    "value": "fastseek"
+                },
+                {
+                    "category": 2,
+                    "name": "skip_loop_filter",
+                    "value": "48"
+                },
+                {
+                    "category": 4,
+                    "name": "reconnect",
+                    "value": "1"
+                },
+                {
+                    "category": 4,
+                    "name": "enable-accurate-seek",
+                    "value": "0"
+                },
+                {
+                    "category": 4,
+                    "name": "mediacodec",
+                    "value": "1"
+                },
+                {
+                    "category": 4,
+                    "name": "mediacodec-auto-rotate",
+                    "value": "1"
+                },
+                {
+                    "category": 4,
+                    "name": "mediacodec-handle-resolution-change",
+                    "value": "1"
+                },
+                {
+                    "category": 4,
+                    "name": "mediacodec-hevc",
+                    "value": "1"
+                },
+                {
+                    "category": 1,
+                    "name": "dns_cache_timeout",
+                    "value": "600000000"
+                }
+            ]
+        }
+    ],
+    "ads": [
+        "https://lf1-cdn-tos.bytegoofy.com/obj/tos-cn-i-dy/455ccf9e8ae744378118e4bd289288dd",
+        "mimg.0c1q0l.cn",
+        "www.googletagmanager.com",
+        "www.google-analytics.com",
+        "mc.usihnbcq.cn",
+        "mg.g1mm3d.cn",
+        "mscs.svaeuzh.cn",
+        "cnzz.hhttm.top",
+        "tp.vinuxhome.com",
+        "cnzz.mmstat.com",
+        "www.baihuillq.com",
+        "s23.cnzz.com",
+        "z3.cnzz.com",
+        "c.cnzz.com",
+        "stj.v1vo.top",
+        "z12.cnzz.com",
+        "img.mosflower.cn",
+        "tips.gamevvip.com",
+        "ehwe.yhdtns.com",
+        "xdn.cqqc3.com",
+        "www.jixunkyy.cn",
+        "sp.chemacid.cn",
+        "hm.baidu.com",
+        "s9.cnzz.com",
+        "z6.cnzz.com",
+        "um.cavuc.com",
+        "mav.mavuz.com",
+        "wofwk.aoidf3.com",
+        "z5.cnzz.com",
+        "xc.hubeijieshikj.cn",
+        "tj.tianwenhu.com",
+        "xg.gars57.cn",
+        "k.jinxiuzhilv.com",
+        "cdn.bootcss.com",
+        "ppl.xunzhuo123.com",
+        "xomk.jiangjunmh.top",
+        "img.xunzhuo123.com",
+        "z1.cnzz.com",
+        "s13.cnzz.com",
+        "xg.huataisangao.cn",
+        "z7.cnzz.com",
+        "xg.huataisangao.cn",
+        "z2.cnzz.com",
+        "s96.cnzz.com",
+        "q11.cnzz.com",
+        "thy.dacedsfa.cn",
+        "xg.whsbpw.cn",
+        "s19.cnzz.com",
+        "z8.cnzz.com",
+        "s4.cnzz.com",
+        "f5w.as12df.top",
+        "ae01.alicdn.com",
+        "www.92424.cn",
+        "k.wudejia.com",
+        "vivovip.mmszxc.top",
+        "qiu.xixiqiu.com",
+        "cdnjs.hnfenxun.com",
+        "cms.qdwght.com"
+    ]
+}
