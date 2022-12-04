@@ -1,6 +1,6 @@
 {
     "wallpaper": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/picture/takagen99.png",
-    "spider": "http://39.103.212.40:2001/spider/spider20221120.jar;md5;50041e58be27b2d9e9f67780b22f1773",
+    "spider": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/tvjar/jar/custom_spider.jar",
     "lives": [{
         "group": "redirect",
         "channels": [{
