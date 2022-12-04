@@ -1,12 +1,9 @@
 name: Spider Jar Gen CI
-
-on: workflow_dispatch
-
+on: 
+  workflow_dispatch:
 jobs:
   build:
-
     runs-on: windows-latest
-    
     steps:
     - uses: actions/checkout@v2
     - name: set up JDK 11
@@ -15,10 +12,8 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
-        
     - name: Build with Gradle
       run: ./buildAndGenJar.bat ec
-        
     - name: Update spider jar
       uses: EndBug/add-and-commit@v7
       with:
