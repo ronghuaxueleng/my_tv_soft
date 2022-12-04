@@ -8,15 +8,15 @@ jobs:
     - uses: actions/checkout@v3
       with:
         ref: 'tvjar'
-    - name: set up JDK 11
+    - name: 安装JDK 11
       uses: actions/setup-java@v2
       with:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
-    - name: Build with Gradle
+    - name: 开始编译
       run: ./buildAndGenJar.bat ec
-    - name: Update spider jar
+    - name: 提交jar包
       uses: EndBug/add-and-commit@v7
       with:
         default_author: github_actions
