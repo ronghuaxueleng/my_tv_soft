@@ -1,6 +1,6 @@
 {
-    "wallpaper": "http://39.103.212.40:2001/picture/takagen99.png",
-    "spider": "http://39.103.212.40:2001/spider/spider20221120.jar;md5;50041e58be27b2d9e9f67780b22f1773",
+    "wallpaper": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/picture/takagen99.png",
+    "spider": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/spider/spider20221120.jar;md5;50041e58be27b2d9e9f67780b22f1773",
     "lives": [{
         "group": "redirect",
         "channels": [{
@@ -15,24 +15,21 @@
             "name": "儿童乐园 |Bili|",
             "type": 3,
             "api": "csp_Bili",
-            "ext": "http://39.103.212.40:2001/sties/json/儿童乐园.json",
-            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+            "ext": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/sties/json/儿童乐园.json"
         },
         {
             "key": "学习",
             "name": "学习园地 |Bili|",
             "type": 3,
             "api": "csp_Bili",
-            "ext": "http://39.103.212.40:2001/sties/json/学习园地.json",
-            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+            "ext": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/sties/json/学习园地.json"
         },
         {
             "key": "音乐",
             "name": "音乐现场 |Bili|",
             "type": 3,
             "api": "csp_Bili",
-            "ext": "http://39.103.212.40:2001/sties/json/音乐现场.json",
-            "jar": "http://39.103.212.40:2001/spider/spider20221119.jar"
+            "ext": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/sties/json/音乐现场.json"
         }
     ],
     "parses": [{
