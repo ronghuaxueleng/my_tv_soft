@@ -41,6 +41,7 @@ jobs:
         run: |
           shopt -s extglob
           git clone https://github.com/once666/mysoft.git soft
+          git clone https://github.com/FongMi/CatVodSpider.git CatVodSpider
           cd soft
           rm -rf .git
           rm -rf .github
@@ -50,6 +51,21 @@ jobs:
           git clone -b my_soft git@jd_scripts_githup:ronghuaxueleng/my_tv_soft.git my_soft
           cp -rf ./soft/* ./my_soft
           cd ./my_soft
+          git add .
+          git commit --allow-empty -m "up"
+          git push
+
+          cd ../
+          git clone https://github.com/FongMi/CatVodSpider.git CatVodSpider
+          cd CatVodSpider
+          rm -rf .git
+          rm -rf .github
+          rm -rf .gitignore
+
+          cd ../
+          git clone -b CatVodSpider git@jd_scripts_githup:ronghuaxueleng/my_tv_soft.git my_CatVodSpider
+          cp -rf ./CatVodSpider/* ./my_CatVodSpider
+          cd ./my_CatVodSpider
           git add .
           git commit --allow-empty -m "up"
           git push
