@@ -42,8 +42,7 @@ jobs:
           shopt -s extglob
           git clone https://github.com/once666/mysoft.git soft
           cd soft
-          rm -rf .github
-          rm -rf .gitignore
+          rm -rf .git
 
           cd ../
           git clone -b my_soft git@jd_scripts_githup:ronghuaxueleng/my_tv_soft.git my_soft
@@ -56,8 +55,7 @@ jobs:
           cd ../
           git clone https://github.com/FongMi/CatVodSpider.git CatVodSpider
           cd CatVodSpider
-          rm -rf .github
-          rm -rf .gitignore
+          rm -rf .git
 
           cd ../
           git clone -b CatVodSpider git@jd_scripts_githup:ronghuaxueleng/my_tv_soft.git my_CatVodSpider
@@ -70,8 +68,7 @@ jobs:
           cd ..
           git https://github.com/lm317379829/TVBoxDIY.git TVBoxDIY
           cd TVBoxDIY
-          rm -rf .github
-          rm -rf .gitignore
+          rm -rf .git
 
           cd ../
           git clone -b TVBoxDIY git@jd_scripts_githup:ronghuaxueleng/my_tv_soft.git my_TVBoxDIY
