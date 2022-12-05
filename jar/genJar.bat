@@ -23,7 +23,6 @@ rd /s/q "%~dp0\Smali_classes"
 java -jar "%~dp0\3rd\apktool_2.4.1.jar" b "%~dp0\spider.jar" -c
 
 move "%~dp0\spider.jar\dist\dex.jar" "%~dp0\custom_spider.jar"
-jarsigner -keystore certKeyStore -storepass 123456 -signedjar custom_spider.jar custom_spider.jar cert -keypass 123456
 
 certUtil -hashfile "%~dp0\custom_spider.jar" MD5 | find /i /v "md5" | find /i /v "certutil" > "%~dp0\custom_spider.jar.md5"
 
