@@ -21,6 +21,7 @@ import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Misc {
 
@@ -163,12 +164,12 @@ public class Misc {
     }
 
     public static void addView(View view, ViewGroup.LayoutParams params) {
-        ViewGroup group = Init.getActivity().getWindow().getDecorView().findViewById(android.R.id.content);
+        ViewGroup group = Objects.requireNonNull(Init.getActivity()).getWindow().getDecorView().findViewById(android.R.id.content);
         group.addView(view, params);
     }
 
     public static void removeView(View view) {
-        ViewGroup group = Init.getActivity().getWindow().getDecorView().findViewById(android.R.id.content);
+        ViewGroup group = Objects.requireNonNull(Init.getActivity()).getWindow().getDecorView().findViewById(android.R.id.content);
         group.removeView(view);
     }
 

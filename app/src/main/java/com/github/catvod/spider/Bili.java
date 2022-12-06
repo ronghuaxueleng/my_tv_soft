@@ -7,6 +7,7 @@ import com.github.catvod.bean.Class;
 import com.github.catvod.bean.Result;
 import com.github.catvod.bean.Vod;
 import com.github.catvod.crawler.Spider;
+import com.github.catvod.crawler.SpiderDebug;
 import com.github.catvod.net.OkHttpUtil;
 import com.github.catvod.utils.Misc;
 import com.github.catvod.utils.Trans;
@@ -19,10 +20,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
-/**
- * @author ColaMint & FongMi
- */
 public class Bili extends Spider {
 
     private static final String url = "https://www.bilibili.com";
@@ -31,7 +30,8 @@ public class Bili extends Spider {
     private String extend;
 
     private String getCookie(String cookie) {
-        if (TextUtils.isEmpty(cookie)) return "buvid3=84B0395D-C9F2-C490-E92E-A09AB48FE26E71636infoc";
+        if (TextUtils.isEmpty(cookie))
+            return "buvid3=84B0395D-C9F2-C490-E92E-A09AB48FE26E71636infoc";
         if (cookie.startsWith("http")) return OkHttpUtil.string(cookie).replace("\n", "");
         return cookie;
     }
@@ -48,7 +48,8 @@ public class Bili extends Spider {
     }
 
     private void fetchRule() throws Exception {
-        if (header.containsKey("cookie") && header.get("cookie").length() > 0) return;
+        if (header.containsKey("cookie") && Objects.requireNonNull(header.get("cookie")).length() > 0)
+            return;
         if (extend.startsWith("http")) fetchExt();
         ext = new JSONObject(extend);
         setHeader();
@@ -61,7 +62,7 @@ public class Bili extends Spider {
             this.header = new HashMap<>();
             fetchRule();
         } catch (Exception e) {
-            e.printStackTrace();
+            SpiderDebug.log(e);
         }
     }
 
