@@ -11,6 +11,15 @@
         }]
     }],
     "sites": [{
+            "key": "IQIYI",
+            "name": "爱奇艺果 |Spider|",
+            "type": 3,
+            "api": "csp_IQIYI",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
             "key": "儿童",
             "name": "儿童乐园 |Bili|",
             "type": 3,
