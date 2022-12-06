@@ -21,7 +21,7 @@ public class MainActivityWithSrc extends Activity {
 
         new Thread(() -> {
             IQIYI bili = new IQIYI();
-            bili.init(this, "https://ghproxy.com/https://raw.githubusercontent.com/ronghuaxueleng/my_tv_soft/filter_interface/sties/json/%E5%84%BF%E7%AB%A5%E4%B9%90%E5%9B%AD.json");
+            bili.init(this, "https://ghproxy.com/https://raw.githubusercontent.com/ronghuaxueleng/my_tv_soft/filter_interface/sties/json/child/iqiyi.json");
             try {
                 String json = bili.homeContent(false);
                 System.out.println("首页数据内容");
@@ -30,7 +30,7 @@ public class MainActivityWithSrc extends Activity {
 //                JSONObject homeContent = new JSONObject(bili.homeVideoContent());
 //                System.out.println("首页最近更新数据");
 //                System.out.println(homeContent);
-                JSONObject data = new JSONObject(bili.categoryContent("儿童早教", "1", false, new HashMap<>()));
+                JSONObject data = new JSONObject(bili.categoryContent("15", "1", false, new HashMap<>()));
                 JSONArray list = data.getJSONArray("list");
                 if (list.length() > 0) {
                     JSONObject jsonObject = list.getJSONObject(0);

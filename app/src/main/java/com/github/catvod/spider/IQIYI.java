@@ -33,7 +33,11 @@ public class IQIYI extends Spider {
     }
 
     private void setHeader() throws Exception {
-        header.put("cookie", getCookie(ext.getString("cookie")));
+        try {
+            header.put("cookie", getCookie(ext.getString("cookie")));
+        } catch (Exception ignored) {
+
+        }
         header.put("User-Agent", Misc.CHROME);
     }
 
