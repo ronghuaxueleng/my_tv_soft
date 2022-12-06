@@ -32,7 +32,7 @@ public class IQIYI extends Spider {
         return cookie;
     }
 
-    private void setHeader() throws Exception {
+    private void setHeader() {
         try {
             header.put("cookie", getCookie(ext.getString("cookie")));
         } catch (Exception ignored) {
