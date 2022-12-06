@@ -16,7 +16,6 @@
             "type": 3,
             "api": "Bili",
             "ext": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/sties/json/儿童乐园.json",
-            "jar": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/tvjar/jar/custom_spider.jar"
         },
         {
             "key": "学习",
@@ -24,7 +23,6 @@
             "type": 3,
             "api": "Bili",
             "ext": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/sties/json/学习园地.json",
-            "jar": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/tvjar/jar/custom_spider.jar"
         },
         {
             "key": "音乐",
@@ -32,7 +30,6 @@
             "type": 3,
             "api": "Bili",
             "ext": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/sties/json/音乐现场.json",
-            "jar": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/tvjar/jar/custom_spider.jar"
         }
     ],
     "parses": [{
