@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivityWithSrc extends Activity {
 
@@ -28,7 +29,7 @@ public class MainActivityWithSrc extends Activity {
                 JSONObject homeContent = new JSONObject(bili.homeVideoContent());
                 System.out.println("首页最近更新数据");
                 System.out.println(homeContent);
-                JSONObject data = new JSONObject(bili.categoryContent("儿童早教", "1", false, null));
+                JSONObject data = new JSONObject(bili.categoryContent("儿童早教", "1", false, new HashMap<>()));
                 JSONArray list = data.getJSONArray("list");
                 if (list.length() > 0) {
                     JSONObject jsonObject = list.getJSONObject(0);
