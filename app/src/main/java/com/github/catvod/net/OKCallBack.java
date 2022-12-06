@@ -1,10 +1,9 @@
-package com.github.catvod.utils.okhttp;
+package com.github.catvod.net;
 
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Response;
-
 
 public abstract class OKCallBack<T> {
 
@@ -30,18 +29,25 @@ public abstract class OKCallBack<T> {
 
     protected abstract T onParseResponse(Call call, Response response);
 
-    protected abstract void onFailure(Call call, Exception e);
+    protected void onFailure(Call call, Exception e) {
+    }
 
     protected abstract void onResponse(T response);
 
-    public static abstract class OKCallBackDefault extends OKCallBack<Response> {
+    public static class OKCallBackDefault extends OKCallBack<Response> {
+
         @Override
         public Response onParseResponse(Call call, Response response) {
             return response;
         }
+
+        @Override
+        protected void onResponse(Response response) {
+        }
     }
 
-    public static abstract class OKCallBackString extends OKCallBack<String> {
+    public static class OKCallBackString extends OKCallBack<String> {
+
         @Override
         public void onError(Call call, Exception e) {
             setResult("");
@@ -55,6 +61,16 @@ public abstract class OKCallBack<T> {
             } catch (IOException e) {
                 return "";
             }
+        }
+
+        @Override
+        protected void onFailure(Call call, Exception e) {
+            setResult("");
+            super.onFailure(call, e);
+        }
+
+        @Override
+        protected void onResponse(String response) {
         }
     }
 }

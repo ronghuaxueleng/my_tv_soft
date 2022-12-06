@@ -32,10 +32,10 @@ public class MainActivityWithJar extends Activity {
             new Thread(() -> {
                 Spider bili = jarLoader.getSpider("Bili");
                 bili.init(MainActivityWithJar.this, "https://ghproxy.com/https://raw.githubusercontent.com/ronghuaxueleng/my_tv_soft/filter_interface/sties/json/%E5%84%BF%E7%AB%A5%E4%B9%90%E5%9B%AD.json");
-                String json = bili.homeContent(false);
-                System.out.println("首页数据内容");
-                System.out.println(json);
                 try {
+                    String json = bili.homeContent(false);
+                    System.out.println("首页数据内容");
+                    System.out.println(json);
                     // 首页最近更新数据
                     JSONObject homeContent = new JSONObject(bili.homeVideoContent());
                     System.out.println("首页最近更新数据");
@@ -51,6 +51,8 @@ public class MainActivityWithJar extends Activity {
                         }}));
                     }
                 } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }).start();

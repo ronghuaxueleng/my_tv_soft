@@ -3,8 +3,8 @@ package com.github.catvod.parser;
 import android.util.Base64;
 
 import com.github.catvod.crawler.SpiderDebug;
+import com.github.catvod.net.OkHttpUtil;
 import com.github.catvod.utils.Misc;
-import com.github.catvod.utils.okhttp.OkHttpUtil;
 
 import org.json.JSONObject;
 

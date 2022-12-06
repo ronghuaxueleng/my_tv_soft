@@ -9,288 +9,291 @@ import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class XPathRule {
     /**
      * user-agent
      */
     private String ua;
     /**
-     * 获取分类和首页推荐的Url
+     * 取得分類和首頁推薦的Url
      */
     private String homeUrl;
     /**
-     * 分类节点 xpath
+     * 分類節點 xpath
      */
     private String cateNode;
     /**
-     * 分类节点名 xpath
+     * 分類節點名 xpath
      */
     private String cateName;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern cateNameR;
     /**
-     * 分类节点id xpath
+     * 分類節點 id xpath
      */
     private String cateId;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern cateIdR;
     /**
-     * 手动指定 分类 如果有则不从homeUrl中获取分类
+     * 手動指定分類如果有則不從 homeUrl 中獲取分類
      */
-    private LinkedHashMap<String, String> cateManual = new LinkedHashMap<>();
+    private final LinkedHashMap<String, String> cateManual = new LinkedHashMap<>();
 
     /**
-     * 筛选
+     * 篩選
      */
     private JSONObject filter;
 
     /**
-     * 更新推荐视频节点 xpath
+     * 更新推薦影片節點 xpath
      */
     private String homeVodNode;
     /**
-     * 更新推荐视频名称 xpath
+     * 更新推薦影片名稱 xpath
      */
     private String homeVodName;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern homeVodNameR;
     /**
-     * 更新推荐视频id xpath
+     * 更新推薦影片 id xpath
      */
     private String homeVodId;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern homeVodIdR;
     /**
-     * 更新推荐视频图片 xpath
+     * 更新推薦影片圖片 xpath
      */
     private String homeVodImg;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern homeVodImgR;
     /**
-     * 更新推荐视频简介 xpath
+     * 更新推薦影片簡介 xpath
      */
     private String homeVodMark;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern homeVodMarkR;
     /**
-     * 分类页地址
+     * 分類頁地址
      */
     private String cateUrl;
     /**
-     * 分类叶视频节点 xpath
+     * 分類頁影片節點 xpath
      */
     private String cateVodNode;
     /**
-     * 分类叶视频名称 xpath
+     * 分類頁影片名稱 xpath
      */
     private String cateVodName;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern cateVodNameR;
     /**
-     * 分类叶视频视频id xpath
+     * 分類頁影片影片id xpath
      */
     private String cateVodId;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern cateVodIdR;
     /**
-     * 分类叶视频视频图片 xpath
+     * 分類頁影片影片圖片 xpath
      */
     private String cateVodImg;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern cateVodImgR;
     /**
-     * 分类叶视频视频简介 xpath
+     * 分類頁影片影片簡介 xpath
      */
     private String cateVodMark;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern cateVodMarkR;
 
     /**
-     * 详情页面
+     * 詳情頁面
      */
     private String dtUrl;
     /**
-     * 详情节点 xpath
+     * 詳情節點 xpath
      */
     private String dtNode;
     /**
-     * 详情 视频名 xpath
+     * 詳情影片 xpath
      */
     private String dtName;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern dtNameR;
     /**
-     * 详情视频图片 xpath
+     * 詳情影片圖片 xpath
      */
     private String dtImg;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern dtImgR;
     /**
-     * 详情视频分类 xpath
+     * 詳情影片分類 xpath
      */
     private String dtCate;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern dtCateR;
     /**
-     * 详情视频年份 xpath
+     * 詳情影片年份 xpath
      */
     private String dtYear;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern dtYearR;
     /**
-     * 详情视频地区 xpath
+     * 詳情影片地區 xpath
      */
     private String dtArea;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern dtAreaR;
     /**
-     * 详情视频简介 xpath
+     * 詳情影片簡介 xpath
      */
     private String dtMark;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern dtMarkR;
     /**
-     * 详情演员 xpath
+     * 詳情演員 xpath
      */
     private String dtActor;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern dtActorR;
     /**
-     * 详情导演 xpath
+     * 詳情導演 xpath
      */
     private String dtDirector;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern dtDirectorR;
     /**
-     * 详情 说明 长  xpath
+     * 詳情說明 xpath
      */
     private String dtDesc;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern dtDescR;
 
     /**
-     * 详情播放来源节点
+     * 詳情播放來源節點
      */
     private String dtFromNode;
     /**
-     * 详情播放来源名称 xpath
+     * 詳情播放來源名稱 xpath
      */
     private String dtFromName;
     /**
-     * 详情
+     * 詳情
      */
     private Pattern dtFromNameR;
     /**
-     * 详情播放地址列表节点  xpath
+     * 詳情播放地址列表節點  xpath
      */
     private String dtUrlNode;
     /**
-     * 详情播放地址节点  xpath
+     * 詳情播放地址節點  xpath
      */
     private String dtUrlSubNode;
     /**
-     * 详情播放地址id  xpath
+     * 詳情播放地址id  xpath
      */
     private String dtUrlId;
     /**
-     * 详情
+     * 詳情
      */
     private Pattern dtUrlIdR;
     /**
-     * 详情播放地址名称  xpath
+     * 詳情播放地址名稱  xpath
      */
     private String dtUrlName;
     /**
-     * 详情
+     * 詳情
      */
     private Pattern dtUrlNameR;
     /**
-     * 播放页面url
+     * 播放頁面url
      */
     private String playUrl;
     /**
-     * 播放解析调用ua
+     * 播放解析調用ua
      */
     private String playUa;
+    /**
+     * 播放解析調用referer
+     */
+    private String playReferer;
 
     /**
-     * 搜索页地址
+     * 搜尋頁地址
      */
     private String searchUrl;
 
     /**
-     * 搜索页视频节点 xpath
+     * 搜尋頁影片節點 xpath
      */
     private String scVodNode;
     /**
-     * 搜索页视频名称 xpath
+     * 搜尋頁影片名稱 xpath
      */
     private String scVodName;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern scVodNameR;
     /**
-     * 搜索页视频id xpath
+     * 搜尋頁影片id xpath
      */
     private String scVodId;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern scVodIdR;
     /**
-     * 搜索页视频图片 xpath
+     * 搜尋頁影片圖片 xpath
      */
     private String scVodImg;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern scVodImgR;
     /**
-     * 搜索页视频简介 xpath
+     * 搜尋頁影片簡介 xpath
      */
     private String scVodMark;
     /**
-     * 正则对取到的数据进行二次处理
+     * 正則對取到的數據進行二次處理
      */
     private Pattern scVodMarkR;
 
@@ -392,6 +395,7 @@ public class XPathRule {
             rule.dtUrlNameR = getPattern(jsonObj, "dtUrlNameR");
             rule.playUrl = jsonObj.optString("playUrl");
             rule.playUa = jsonObj.optString("playUa");
+            rule.playReferer = jsonObj.optString("playReferer");
             rule.searchUrl = jsonObj.optString("searchUrl");
             rule.scVodNode = jsonObj.optString("scVodNode").trim();
             rule.scVodName = jsonObj.optString("scVodName").trim();
@@ -643,6 +647,10 @@ public class XPathRule {
 
     public String getPlayUa() {
         return playUa;
+    }
+
+    public String getPlayReferer() {
+        return playReferer;
     }
 
     public String getSearchUrl() {

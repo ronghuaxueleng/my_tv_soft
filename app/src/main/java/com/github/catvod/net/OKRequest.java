@@ -1,4 +1,4 @@
-package com.github.catvod.utils.okhttp;
+package com.github.catvod.net;
 
 import android.text.TextUtils;
 
@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -14,16 +13,16 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 class OKRequest {
+
     private final String mMethodType;
-    private String mUrl;
-    private Object mTag = null;
     private final Map<String, String> mParamsMap;
     private final String mJsonStr;
     private final Map<String, String> mHeaderMap;
     private final OKCallBack mCallBack;
+    private String mUrl;
+    private Object mTag = null;
     private okhttp3.Request mOkHttpRequest;
     private okhttp3.Request.Builder mRequestBuilder;
-
 
     OKRequest(String methodType, String url, Map<String, String> paramsMap, Map<String, String> headerMap, OKCallBack callBack) {
         this(methodType, url, null, paramsMap, headerMap, callBack);
@@ -110,23 +109,5 @@ class OKRequest {
                 mCallBack.onError(call, e);
             }
         }
-    }
-
-    void call(OkHttpClient client) {
-        client.newCall(mOkHttpRequest).enqueue(new Callback() {
-            @Override
-            public void onFailure(final Call call, final IOException e) {
-                if (mCallBack != null) {
-                    mCallBack.onError(call, e);
-                }
-            }
-
-            @Override
-            public void onResponse(final Call call, final Response response) throws IOException {
-                if (mCallBack != null) {
-                    mCallBack.onSuccess(call, response);
-                }
-            }
-        });
     }
 }
