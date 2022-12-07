@@ -55,25 +55,6 @@
             "url": "Sequence"
         },
         {
-            "name": "线路01",
-            "type": 1,
-            "url": "http://lanlan.ckflv.cn/?url=",
-            "ext": {
-                "flag": [
-                    "qiyi",
-                    "qq",
-                    "letv",
-                    "sohu",
-                    "youku",
-                    "mgtv",
-                    "bilibili",
-                    "wasu",
-                    "xigua",
-                    "1905"
-                ]
-            }
-        },
-        {
             "name": "线路02",
             "type": 1,
             "url": "http://rxjx.kuanjv.com/allm3u8.php?url="
