@@ -15,9 +15,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import rxhttp.wrapper.annotations.NonNull;
 
 public class IQIYI extends Spider {
@@ -183,10 +185,11 @@ public class IQIYI extends Spider {
 
     public String homeContent(boolean filter) {
         try {
-            String str = "https://pcw-api.iqiyi.com/search/video/videolists?channel_id=2&is_purchase=&mode=24&pageNum=1&pageSize=24&data_type=1&site=iqiyi";
+            String channel_id = ext.getString("channel_id");
+            String str = "https://pcw-api.iqiyi.com/search/video/videolists?channel_id=" + channel_id + "&is_purchase=&mode=24&pageNum=1&pageSize=24&data_type=1&site=iqiyi";
             String h = OkHttpUtil.string(str, header);
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("class", ext.getJSONArray("classes").toString());
+            jSONObject.put("class", ext.getJSONArray("classes"));
             if (filter) {
                 jSONObject.put("filters", ext.getJSONObject("filter"));
             }
