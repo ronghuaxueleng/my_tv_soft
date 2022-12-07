@@ -55,6 +55,25 @@
             "url": "Sequence"
         },
         {
+            "name": "线路01",
+            "type": 1,
+            "url": "http://lanlan.ckflv.cn/?url=",
+            "ext": {
+                "flag": [
+                    "qiyi",
+                    "qq",
+                    "letv",
+                    "sohu",
+                    "youku",
+                    "mgtv",
+                    "bilibili",
+                    "wasu",
+                    "xigua",
+                    "1905"
+                ]
+            }
+        },
+        {
             "name": "线路02",
             "type": 1,
             "url": "http://rxjx.kuanjv.com/allm3u8.php?url="
@@ -83,35 +102,6 @@
                     "sohu",
                     "letv"
                 ]
-            }
-        },
-        {
-            "name": "线路01",
-            "type": 1,
-            "url": "http://newjiexi.gotka.top/keyu3.php?url=",
-            "ext": {
-                "flag": [
-                    "qq",
-                    "腾讯",
-                    "qiyi",
-                    "爱奇艺",
-                    "奇艺",
-                    "youku",
-                    "优酷",
-                    "mgtv",
-                    "芒果",
-                    "letv",
-                    "乐视",
-                    "pptv",
-                    "PPTV",
-                    "sohu",
-                    "bilibili",
-                    "哔哩哔哩",
-                    "哔哩"
-                ],
-                "header": {
-                    "User-Agent": "okhttp/4.1.0"
-                }
             }
         }
     ],
