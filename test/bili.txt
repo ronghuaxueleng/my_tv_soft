@@ -1,0 +1,6 @@
+bvid2aidUrl
+https://api.bilibili.com/x/web-interface/archive/stat?bvid=BV1jR4y1f7TP
+detailUrl
+https://api.bilibili.com/x/web-interface/view?aid=347763369
+
+347763369+895778936
