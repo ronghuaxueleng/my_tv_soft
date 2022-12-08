@@ -12,7 +12,7 @@
     }],
     "sites": [{
             "key": "8号影院",
-            "name": "8号影院",
+            "name": "8号影院 |BaHao|",
             "type": 3,
             "api": "csp_BaHao",
             "ext": "https://ghproxy.com/https://github.com/ronghuaxueleng/my_tv_soft/blob/filter_interface/sties/json/8hysw.json"
