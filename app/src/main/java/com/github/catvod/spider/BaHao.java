@@ -230,14 +230,14 @@ public class BaHao extends Spider {
         }
 
         if (targetUrl != null && playUrl != null) {
-            targetUrl = targetUrl + playUrl;
-            html = OkHttpUtil.string(targetUrl, header);
+            url = targetUrl + playUrl;
+            html = OkHttpUtil.string(url, header);
             System.out.println();
         }
 
-        String testjs = "var val = getValue('testKey');" + "setValue('setKey',val)";
-        JSEngine jsEngine = new JSEngine();
-        jsEngine.runScript(testjs);
+//        String testjs = "var val = getValue('testKey');" + "setValue('setKey',val)";
+//        JSEngine jsEngine = new JSEngine();
+//        jsEngine.runScript(testjs);
 
         return Result.get().url(url).header(header).string();
     }
