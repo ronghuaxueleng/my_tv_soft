@@ -33,11 +33,16 @@ public class MainActivityWithBaHao extends Activity {
                 JSONArray list = data.getJSONArray("list");
                 if (list.length() > 0) {
                     JSONObject jsonObject = list.getJSONObject(0);
-                    String vod_id = "/movie/37269.html";//jsonObject.getString("vod_id");
+                    String vod_id = jsonObject.getString("vod_id");
                     // 视频详情
-                    System.out.println(bili.detailContent(new ArrayList<String>() {{
+                    JSONObject detailContent = new JSONObject(bili.detailContent(new ArrayList<String>() {{
                         add(vod_id);
                     }}));
+                    JSONArray playList = detailContent.getJSONArray("list");
+                    String vod_play_url = playList.getJSONObject(0).getString("vod_play_url");
+                    String s = vod_play_url.split("#")[0];
+                    String playUrl = s.split("\\$")[1];
+                    bili.playerContent("1", playUrl, new ArrayList<>());
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

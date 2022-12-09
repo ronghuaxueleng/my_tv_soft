@@ -44,4 +44,5 @@ dependencies {
         exclude group: "com.squareup.okhttp3"
     }
     annotationProcessor "com.github.liujingxing.rxhttp:rxhttp-compiler:$rxhttp_version"
+    implementation files('libs/rhino-1.7.14.jar')
 }

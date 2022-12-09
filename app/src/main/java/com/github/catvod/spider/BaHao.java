@@ -1,6 +1,8 @@
 package com.github.catvod.spider;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.text.TextUtils;
 
 import com.github.catvod.bean.Class;
@@ -9,24 +11,22 @@ import com.github.catvod.bean.Vod;
 import com.github.catvod.crawler.Spider;
 import com.github.catvod.crawler.SpiderDebug;
 import com.github.catvod.net.OkHttpUtil;
+import com.github.catvod.parser.JSEngine;
 import com.github.catvod.utils.Misc;
-import com.github.catvod.utils.Trans;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.seimicrawler.xpath.JXDocument;
-import org.seimicrawler.xpath.JXNode;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 8号影院
@@ -38,6 +38,10 @@ public class BaHao extends Spider {
     private HashMap<String, String> header;
     private JSONObject ext;
     private String extend;
+
+    Pattern urlPattern = Pattern.compile("var now=base64decode\\(\"(?<url>\\S+)\"\\);");
+    Pattern pnPattern = Pattern.compile("var pn=\"(?<pn>\\S+)\";");
+    Pattern targetPattern = Pattern.compile("src=\"(?<targetUrl>https://\\S+url=)");
 
     private String getCookie(String cookie) {
         if (TextUtils.isEmpty(cookie))
@@ -196,14 +200,45 @@ public class BaHao extends Spider {
         return categoryContent(key, "1", true, new HashMap<>());
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
     @Override
     public String playerContent(String flag, String id, List<String> vipFlags) throws Exception {
-        String[] ids = id.split("\\+");
-        String aid = ids[0];
-        String cid = ids[1];
-        String url = "https://api.bilibili.com/x/player/playurl?avid=" + aid + "&cid=" + cid + "&qn=120&fourk=1";
-        JSONObject resp = new JSONObject(OkHttpUtil.string(url, header));
-        url = resp.getJSONObject("data").getJSONArray("durl").getJSONObject(0).getString("url");
+        String url = "http://www.8hysw.com" + id;
+        String html = OkHttpUtil.string(url, header);
+        Document doc = Jsoup.parse(html);
+        Elements playerFrame = doc.select(".stui-player__iframe");
+        Elements scripts = playerFrame.select("script");
+        String pn = null;
+        String playUrl = null;
+        for (Element script : scripts) {
+            Matcher urlMatcher = urlPattern.matcher(script.html());
+            if (urlMatcher.find()) {
+                byte[] decodedBytes = Base64.getDecoder().decode(urlMatcher.group("url"));
+                playUrl = new String(decodedBytes);
+            }
+            Matcher pnMatcher = pnPattern.matcher(script.html());
+            if (pnMatcher.find()) {
+                pn = pnMatcher.group("pn");
+            }
+        }
+        url = "http://www.8hysw.com/js/player/" + pn + ".html";
+        html = OkHttpUtil.string(url, header);
+        Matcher targetMatcher = targetPattern.matcher(html);
+        String targetUrl = null;
+        if (targetMatcher.find()) {
+            targetUrl = targetMatcher.group("targetUrl");
+        }
+
+        if (targetUrl != null && playUrl != null) {
+            targetUrl = targetUrl + playUrl;
+            html = OkHttpUtil.string(targetUrl, header);
+            System.out.println();
+        }
+
+        String testjs = "var val = getValue('testKey');" + "setValue('setKey',val)";
+        JSEngine jsEngine = new JSEngine();
+        jsEngine.runScript(testjs);
+
         return Result.get().url(url).header(header).string();
     }
 }
