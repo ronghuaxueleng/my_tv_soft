@@ -31,7 +31,7 @@ public class Base {
             return new String(buffer);
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("fuck", "error");
+            Log.e("fuck", "读取" + file.getName() + "失败");
         }
         return "";
     }
@@ -53,6 +53,7 @@ public class Base {
                     os.close();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Log.e("fuck", "下载" + jsPath + "失败");
                 }
             }
         } catch (Throwable e) {

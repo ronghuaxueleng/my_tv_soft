@@ -18,7 +18,7 @@ public class Mark extends Base {
     }
 
     public static void setContent(Context context) {
-        File filesDir = context.getFilesDir();
+        File filesDir = context.getCacheDir();
         File wyb52Dir = new File(filesDir, "wyb52");
         if (!wyb52Dir.isDirectory()) {
             wyb52Dir.mkdirs();
