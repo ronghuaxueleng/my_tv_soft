@@ -1,4 +1,5 @@
--optimizationpasses 0
+#指定压缩级别
+-optimizationpasses 5
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
 -dontskipnonpubliclibraryclassmembers
