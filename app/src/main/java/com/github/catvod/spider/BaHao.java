@@ -48,8 +48,9 @@ public class BaHao extends Spider {
 
     private static final String url = "http://www.8hysw.com";
     private HashMap<String, String> header;
-    private JSONObject ext;
     private String extend;
+    private JSONObject ext;
+    private Context context;
 
     private final ScriptEngineManager manager = new ScriptEngineManager();
     private final ScriptEngine engine = manager.getEngineByName("javascript");
@@ -102,6 +103,7 @@ public class BaHao extends Spider {
     public void init(Context context, String extend) {
         try {
             this.extend = extend;
+            this.context = context;
             this.header = new HashMap<>();
             fetchRule();
         } catch (Exception e) {
@@ -291,7 +293,7 @@ public class BaHao extends Spider {
                                     String execute = execute(s1);
                                     String[] evals = execute.split("eval");
                                     StringJoiner evalJoiner = new StringJoiner(";\n");
-                                    evalJoiner.add(Md5.getContent());
+                                    evalJoiner.add(Md5.getContent(context));
                                     evalJoiner.add(Ck.content);
                                     evalJoiner.add("var vd = '" + vd + "'");
                                     evalJoiner.add("var cache =" + execute(evals[0] + execute(evals[1])));
@@ -335,7 +337,7 @@ public class BaHao extends Spider {
             }
             TreeMap<String, String> postData = new TreeMap<>();
             postData.put("vid", playUrl);
-            postData.put("cvid", execute(Md5.getContent() + "\n" + "md5('" + cvk + "')") + "0");
+            postData.put("cvid", execute(Md5.getContent(context) + "\n" + "md5('" + cvk + "')") + "0");
             postData.put("type", "auto");
             postData.put("guid", guid);
             postData.put("mode", "phone");
@@ -343,7 +345,7 @@ public class BaHao extends Spider {
             postData.put("rms", "0");
             postData.put("ptm", String.valueOf(Math.abs((double) System.currentTimeMillis() / 1000 - Long.parseLong(pageTime))));
             postData.put("key", key);
-            String markContent = Md5.getContent() + "\n" + Mark.getContent();
+            String markContent = Md5.getContent(context) + "\n" + Mark.getContent(context);
             postData.put("ckey", execute(markContent + "\n" + "mark('" + key + ckey + "','" + tex + "')"));
             String authKey = execute(markContent + "\n" + "gkt('" + key + "')");
             BigDecimal bd1 = new BigDecimal(authKey);

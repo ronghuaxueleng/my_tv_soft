@@ -9,11 +9,12 @@ import com.github.catvod.js.Base;
 import java.io.File;
 
 public class Md5 extends Base {
-    protected static String content = "";
     static String fileName = "wyb52/md5.js";
 
-    public static String getContent() {
-        return content;
+    public static String getContent(Context context) {
+        File filesDir = context.getCacheDir();
+        File file = new File(filesDir, fileName);
+        return getFileConten(file);
     }
 
     public static void setContent(Context context) {
@@ -28,10 +29,9 @@ public class Md5 extends Base {
             }
 
             File file = new File(filesDir, fileName);
-//        if (!file.exists()) {
-            downLoadJs(baseUrl + fileName, file);
-//        }
-            content = getFileConten(file);
+            if (!file.exists()) {
+                downLoadJs(baseUrl + fileName, file);
+            }
         }, 1000);
     }
 }
