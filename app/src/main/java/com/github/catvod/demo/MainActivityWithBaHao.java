@@ -3,7 +3,7 @@ package com.github.catvod.demo;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.github.catvod.js.Md5;
+import com.github.catvod.js.wyb52.Md5;
 import com.github.catvod.js.wyb52.Mark;
 import com.github.catvod.spider.BaHao;
 
@@ -19,7 +19,7 @@ public class MainActivityWithBaHao extends Activity {
 
         new Thread(() -> {
             Mark.setContent(this);
-            Md5.setMd5Content(this);
+            Md5.setContent(this);
             BaHao bili = new BaHao();
             bili.init(this, "https://ghproxy.com/https://raw.githubusercontent.com/ronghuaxueleng/my_tv_soft/filter_interface/sties/json/8hysw.json");
             try {

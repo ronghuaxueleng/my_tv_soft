@@ -8,7 +8,7 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.github.catvod.crawler.SpiderDebug;
-import com.github.catvod.js.Md5;
+import com.github.catvod.js.wyb52.Md5;
 import com.github.catvod.js.wyb52.Mark;
 import com.github.catvod.utils.Trans;
 
@@ -41,7 +41,7 @@ public class Init {
         get().app = ((Application) context);
         Trans.init();
         Mark.setContent(context);
-        Md5.setMd5Content(context);
+        Md5.setContent(context);
     }
 
     public static void run(Runnable runnable) {

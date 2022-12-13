@@ -1,17 +1,14 @@
 package com.github.catvod.js.wyb52;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.github.catvod.js.Base;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 
-public class Mark extends Base {
+public class Md5 extends Base {
     protected static String content = "";
-    static String fileName = "wyb52/mark.js";
+    static String fileName = "wyb52/md5.js";
 
     public static String getContent() {
         return content;

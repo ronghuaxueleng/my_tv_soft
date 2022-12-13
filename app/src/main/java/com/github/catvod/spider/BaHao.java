@@ -11,7 +11,7 @@ import com.github.catvod.bean.Result;
 import com.github.catvod.bean.Vod;
 import com.github.catvod.crawler.Spider;
 import com.github.catvod.crawler.SpiderDebug;
-import com.github.catvod.js.Md5;
+import com.github.catvod.js.wyb52.Md5;
 import com.github.catvod.js.wyb52.Ck;
 import com.github.catvod.js.wyb52.Mark;
 import com.github.catvod.net.OkHttpUtil;
@@ -291,7 +291,7 @@ public class BaHao extends Spider {
                                     String execute = execute(s1);
                                     String[] evals = execute.split("eval");
                                     StringJoiner evalJoiner = new StringJoiner(";\n");
-                                    evalJoiner.add(Md5.getMd5Content());
+                                    evalJoiner.add(Md5.getContent());
                                     evalJoiner.add(Ck.content);
                                     evalJoiner.add("var vd = '" + vd + "'");
                                     evalJoiner.add("var cache =" + execute(evals[0] + execute(evals[1])));
@@ -335,7 +335,7 @@ public class BaHao extends Spider {
             }
             TreeMap<String, String> postData = new TreeMap<>();
             postData.put("vid", playUrl);
-            postData.put("cvid", execute(Md5.getMd5Content() + "\n" + "md5('" + cvk + "')") + "0");
+            postData.put("cvid", execute(Md5.getContent() + "\n" + "md5('" + cvk + "')") + "0");
             postData.put("type", "auto");
             postData.put("guid", guid);
             postData.put("mode", "phone");
@@ -343,7 +343,7 @@ public class BaHao extends Spider {
             postData.put("rms", "0");
             postData.put("ptm", String.valueOf(Math.abs((double) System.currentTimeMillis() / 1000 - Long.parseLong(pageTime))));
             postData.put("key", key);
-            String markContent = Md5.getMd5Content() + "\n" + Mark.getContent();
+            String markContent = Md5.getContent() + "\n" + Mark.getContent();
             postData.put("ckey", execute(markContent + "\n" + "mark('" + key + ckey + "','" + tex + "')"));
             String authKey = execute(markContent + "\n" + "gkt('" + key + "')");
             BigDecimal bd1 = new BigDecimal(authKey);
