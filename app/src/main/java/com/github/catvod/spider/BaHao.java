@@ -11,9 +11,9 @@ import com.github.catvod.bean.Result;
 import com.github.catvod.bean.Vod;
 import com.github.catvod.crawler.Spider;
 import com.github.catvod.crawler.SpiderDebug;
-import com.github.catvod.js.wyb52.Md5;
 import com.github.catvod.js.wyb52.Ck;
 import com.github.catvod.js.wyb52.Mark;
+import com.github.catvod.js.wyb52.Md5;
 import com.github.catvod.net.OkHttpUtil;
 import com.github.catvod.parser.AAencode;
 import com.github.catvod.utils.Misc;
@@ -389,6 +389,7 @@ public class BaHao extends Spider {
             return result.toString();
         } catch (Exception e) {
             Log.e("e", e.toString());
+            SpiderDebug.log("fuck 读取" + e);
             throw new RuntimeException(e);
         }
     }

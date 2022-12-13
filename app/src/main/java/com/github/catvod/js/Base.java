@@ -1,7 +1,6 @@
 package com.github.catvod.js;
 
-import android.util.Log;
-
+import com.github.catvod.crawler.SpiderDebug;
 import com.github.catvod.net.OkResponse;
 
 import java.io.File;
@@ -31,7 +30,8 @@ public class Base {
             return new String(buffer);
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("fuck", "读取" + file.getName() + "失败");
+            SpiderDebug.log(e);
+            SpiderDebug.log("fuck 读取" + file.getName() + "失败");
         }
         return "";
     }
@@ -57,8 +57,8 @@ public class Base {
             }
         } catch (Throwable e) {
             e.printStackTrace();
-            Log.e("fuck", e.getMessage());
-            Log.e("fuck", "下载" + jsPath + "失败");
+            SpiderDebug.log(e);
+            SpiderDebug.log("fuck 下载" + jsPath + "失败");
         }
     }
 
