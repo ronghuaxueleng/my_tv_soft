@@ -1,7 +1,7 @@
 package com.github.catvod.js;
 
 import com.github.catvod.crawler.SpiderDebug;
-import com.github.catvod.net.OkResponse;
+import com.lzy.okgo.OkGo;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,7 +38,7 @@ public class Base {
 
     public static void downLoadJs(String jsPath, File cache) {
         try {
-            Response response = OkResponse.get(jsPath);
+            Response response = OkGo.<File>get(jsPath).execute();
             InputStream is = response.body().byteStream();
             OutputStream os = new FileOutputStream(cache);
             try {
