@@ -4,29 +4,41 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.github.catvod.bean.Class;
 import com.github.catvod.bean.Result;
 import com.github.catvod.bean.Vod;
 import com.github.catvod.crawler.Spider;
 import com.github.catvod.crawler.SpiderDebug;
+import com.github.catvod.js.Md5;
+import com.github.catvod.js.wyb52.Ck;
+import com.github.catvod.js.wyb52.Mark;
 import com.github.catvod.net.OkHttpUtil;
-import com.github.catvod.parser.JSEngine;
+import com.github.catvod.parser.AAencode;
 import com.github.catvod.utils.Misc;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.StringJoiner;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 
 /**
  * 8号影院
@@ -39,9 +51,23 @@ public class BaHao extends Spider {
     private JSONObject ext;
     private String extend;
 
+    private final ScriptEngineManager manager = new ScriptEngineManager();
+    private final ScriptEngine engine = manager.getEngineByName("javascript");
+
+    // js注释正则
+    String jsNotes = "[^:]//.*|/\\*(\\s|.)*?\\*\\/";
     Pattern urlPattern = Pattern.compile("var now=base64decode\\(\"(?<url>\\S+)\"\\);");
     Pattern pnPattern = Pattern.compile("var pn=\"(?<pn>\\S+)\";");
-    Pattern targetPattern = Pattern.compile("src=\"(?<targetUrl>https://\\S+url=)");
+    Pattern targetPattern = Pattern.compile("src=\"(?<targetUrl>https://\\S+url=\\S+)\"");
+    Pattern evalPattern = Pattern.compile("eval\\((?<function>.*)\\)");
+    Pattern vdPattern = Pattern.compile("vd='(?<vd>\\S+)'");
+    Pattern keyPattern = Pattern.compile("key\\s?=\\s?'(?<key>\\S+)'");
+    Pattern texPattern = Pattern.compile("tex=(?<tex>\\S+);");
+    Pattern pageTimePattern = Pattern.compile("var\\spageTime\\s=\\s(?<pageTime>\\S+);");
+    Pattern cvidpPattern = Pattern.compile("\\$\\('#cvid'\\).val\\('(?<cvid>\\S+)'\\);");
+    Pattern cvkPattern = Pattern.compile("document\\.getElementById\\(\"cvk\"\\)\\.value=\\$\\(\"#cvid\"\\)\\.val\\(\\)\\+\"(?<cvk>\\S+)\";");
+    String func1 = "function(p,a,c,k,e,d){e=function(c){return c};if(!''.replace(/^/,String)){while(c--){d[c]=k[c]||c}k=[function(e){return d[e]}];e=function(){return'\\\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b','g'),k[c])}}return p}";
+    String func2 = "function(p,a,c,k,e,d){e=function(c){return(c<a?\"\":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\\\b'+e(c)+'\\\\b','g'),k[c]);return p;}";
 
     private String getCookie(String cookie) {
         if (TextUtils.isEmpty(cookie))
@@ -221,24 +247,149 @@ public class BaHao extends Spider {
                 pn = pnMatcher.group("pn");
             }
         }
-        url = "http://www.8hysw.com/js/player/" + pn + ".html";
-        html = OkHttpUtil.string(url, header);
+        String playerUrl = "http://www.8hysw.com/js/player/" + pn + ".html";
+        html = OkHttpUtil.string(playerUrl, header);
+        html = html.replaceAll(jsNotes, "");
         Matcher targetMatcher = targetPattern.matcher(html);
         String targetUrl = null;
         if (targetMatcher.find()) {
             targetUrl = targetMatcher.group("targetUrl");
+            if (targetUrl != null) {
+                targetUrl = targetUrl.replaceAll("\\s", "").replace("'+parent.now+'", "%s");
+            }
         }
 
         if (targetUrl != null && playUrl != null) {
-            url = targetUrl + playUrl;
-            html = OkHttpUtil.string(url, header);
-            System.out.println();
+            url = String.format(targetUrl, playUrl);
+            Map<String, String> newHeader = new HashMap<>(header);
+            newHeader.put("Referer", playerUrl);
+            newHeader.put("Host", Misc.getHost(url));
+            html = OkHttpUtil.string(url, newHeader);
+            Document palyerHtmldoc = Jsoup.parse(html);
+            String vd = "";
+            String key = "";
+            String tex = "";
+            String ckey = "";
+            String pageTime = "";
+            String cvk = Objects.requireNonNull(palyerHtmldoc.getElementById("cvk")).val();
+            String cvid = Objects.requireNonNull(palyerHtmldoc.getElementById("cvid")).val();
+            String guid = Objects.requireNonNull(palyerHtmldoc.getElementById("guid")).val();
+            scripts = palyerHtmldoc.select("script");
+            for (Element script : scripts) {
+                String src = script.attr("src");
+                if ("".equals(src)) {
+                    String[] splitScripts = script.html().split("\n");
+                    for (String splitScript : splitScripts) {
+                        String s = splitScript.replaceAll("\\t", "");
+                        boolean ifEval = s.startsWith("eval");
+                        if (ifEval) {
+                            Matcher evalMatcher = evalPattern.matcher(s);
+                            if (evalMatcher.find()) {
+                                String function = evalMatcher.group("function");
+                                if (function.startsWith(func1)) {
+                                    String s1 = function.replace(func1, "var func1=" + func1 + ";func1");
+                                    String execute = execute(s1);
+                                    String[] evals = execute.split("eval");
+                                    StringJoiner evalJoiner = new StringJoiner(";\n");
+                                    evalJoiner.add(Md5.getMd5Content());
+                                    evalJoiner.add(Ck.content);
+                                    evalJoiner.add("var vd = '" + vd + "'");
+                                    evalJoiner.add("var cache =" + execute(evals[0] + execute(evals[1])));
+                                    evalJoiner.add(execute(evals[2]).replace("document.domain", "'" + Misc.getHost(url) + "'"));
+                                    ckey = execute(evalJoiner.toString());
+                                } else if (function.startsWith(func2)) {
+                                    String s1 = function.replace(func2, "var func2=" + func2 + ";func2");
+                                    String execute = execute(s1);
+                                    Matcher cvkMatcher = cvkPattern.matcher(execute);
+                                    if (cvkMatcher.find()) {
+                                        cvk = cvid + cvkMatcher.group("cvk");
+                                    }
+                                }
+                            }
+                        } else if (s.contains("ﾟωﾟﾉ= /｀ｍ´）ﾉ ~┻━┻")) {
+                            String decode = AAencode.decode(s);
+                            Matcher cvidMatcher = cvidpPattern.matcher(decode);
+                            if (cvidMatcher.find()) {
+                                cvid = cvidMatcher.group("cvid");
+                            }
+                            Matcher vdMatcher = vdPattern.matcher(decode);
+                            if (vdMatcher.find()) {
+                                vd = vdMatcher.group("vd");
+                            }
+                            Matcher keyMatcher = keyPattern.matcher(decode);
+                            if (keyMatcher.find()) {
+                                key = keyMatcher.group("key");
+                            }
+                            Matcher texMatcher = texPattern.matcher(decode);
+                            if (texMatcher.find()) {
+                                tex = texMatcher.group("tex");
+                            }
+                        } else {
+                            Matcher pageTimeMatcher = pageTimePattern.matcher(s);
+                            if (pageTimeMatcher.find()) {
+                                pageTime = pageTimeMatcher.group("pageTime");
+                            }
+                        }
+                    }
+                }
+            }
+            TreeMap<String, String> postData = new TreeMap<>();
+            postData.put("vid", playUrl);
+            postData.put("cvid", execute(Md5.getMd5Content() + "\n" + "md5('" + cvk + "')") + "0");
+            postData.put("type", "auto");
+            postData.put("guid", guid);
+            postData.put("mode", "phone");
+            postData.put("err", "0");
+            postData.put("rms", "0");
+            postData.put("ptm", String.valueOf(Math.abs((double) System.currentTimeMillis() / 1000 - Long.parseLong(pageTime))));
+            postData.put("key", key);
+            String markContent = Md5.getMd5Content() + "\n" + Mark.getContent();
+            postData.put("ckey", execute(markContent + "\n" + "mark('" + key + ckey + "','" + tex + "')"));
+            String authKey = execute(markContent + "\n" + "gkt('" + key + "')");
+            BigDecimal bd1 = new BigDecimal(authKey);
+            String s = bd1.toPlainString();
+            String encData = execute(markContent + "\n" + "gdk('" + key + "',0x1)");
+            newHeader = new HashMap<>();
+            newHeader.put("Host", "api.52wyb.com");
+            newHeader.put("authkey", s);
+            newHeader.put("encdata", encData);
+            newHeader.put("sec-ch-ua-mobile", "?0");
+            newHeader.put("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36");
+            newHeader.put("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+            newHeader.put("accept", "application/json, text/javascript, */*; q=0.01");
+            newHeader.put("x-requested-with", "XMLHttpRequest");
+            newHeader.put("sec-ch-ua", "\"Chromium\";v=\"21\", \" Not;A Brand\";v=\"99\"");
+            newHeader.put("sec-ch-ua-platform", "\"Windows\"");
+            newHeader.put("version", "0.4.2");
+            newHeader.put("origin", "https://api.52wyb.com");
+            newHeader.put("sec-fetch-site", "same-origin");
+            newHeader.put("sec-fetch-mode", "cors");
+            newHeader.put("sec-fetch-dest", "empty");
+            newHeader.put("accept-language", "zh-CN,zh;q=0.9");
+            String post = OkHttpUtil.post("https://api.52wyb.com/apis/get.json", postData, newHeader);
+            JSONObject res = new JSONObject(post);
+            if (res.getInt("success") == 1) {
+                JSONObject streams = res.getJSONObject("streams");
+                JSONArray segs = streams.getJSONArray("segs");
+                if (segs.length() > 0) {
+                    JSONObject jsonObject = segs.getJSONObject(0);
+                    return Result.get().url(jsonObject.getString("url")).header(header).string();
+                }
+            }
         }
 
-//        String testjs = "var val = getValue('testKey');" + "setValue('setKey',val)";
-//        JSEngine jsEngine = new JSEngine();
-//        jsEngine.runScript(testjs);
-
         return Result.get().url(url).header(header).string();
+    }
+
+    public String execute(String script) {
+        Object result = null;
+        try {
+            //预编译
+            result = engine.eval(script);
+            return result.toString();
+        } catch (Exception e) {
+            Log.e("e", e.toString());
+            throw new RuntimeException(e);
+        }
     }
 }

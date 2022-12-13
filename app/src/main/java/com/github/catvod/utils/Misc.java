@@ -17,6 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.List;
@@ -132,6 +134,10 @@ public class Misc {
 
     public static String MD5(String src) {
         return MD5(src, "UTF-8");
+    }
+
+    public static String getHost(String url) throws MalformedURLException {
+        return new URL(url).getHost();
     }
 
     public static String MD5(String src, String charset) {

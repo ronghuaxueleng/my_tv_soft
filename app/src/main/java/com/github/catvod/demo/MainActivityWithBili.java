@@ -42,7 +42,7 @@ public class MainActivityWithBili extends Activity {
                     JSONArray list1 = jsonObject1.getJSONArray("list");
                     String vodPlayUrl = list1.getJSONObject(0).getString("vod_play_url");
                     System.out.println(vodPlayUrl);
-                    System.out.println(bili.playerContent("1", vodPlayUrl.split("~\\$")[1], new ArrayList<>()));
+                    System.out.println(bili.playerContent("1", vodPlayUrl.split("\\$")[1], new ArrayList<>()));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

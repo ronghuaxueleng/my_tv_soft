@@ -8,6 +8,8 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.github.catvod.crawler.SpiderDebug;
+import com.github.catvod.js.Md5;
+import com.github.catvod.js.wyb52.Mark;
 import com.github.catvod.utils.Trans;
 
 import java.lang.reflect.Field;
@@ -38,6 +40,8 @@ public class Init {
         SpiderDebug.log("自定義爬蟲代碼載入成功！");
         get().app = ((Application) context);
         Trans.init();
+        Mark.setContent(context);
+        Md5.setMd5Content(context);
     }
 
     public static void run(Runnable runnable) {
