@@ -4,6 +4,13 @@ plugins {
 }
 
 android {
+
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets']
+        }
+    }
+
     compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
