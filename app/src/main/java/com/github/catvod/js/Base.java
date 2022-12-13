@@ -53,11 +53,12 @@ public class Base {
                     os.close();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("fuck", "下载" + jsPath + "失败");
                 }
             }
         } catch (Throwable e) {
             e.printStackTrace();
+            Log.e("fuck", e.getMessage());
+            Log.e("fuck", "下载" + jsPath + "失败");
         }
     }
 
