@@ -1,5 +1,5 @@
 #指定压缩级别
--optimizationpasses 5
+-optimizationpasses 0
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
 -dontskipnonpubliclibraryclassmembers
@@ -21,6 +21,11 @@
 
 -flattenpackagehierarchy com.github.catvod.spider.merge
 -repackageclasses com.github.catvod.spider.merge
+
+# Spider
+-keep class com.github.catvod.crawler.* { *; }
+-keep class com.github.catvod.spider.* { public <methods>; }
+-keep class com.github.catvod.parser.* { public <methods>; }
 
 -dontwarn okio.**
 -keep class okio.**{*;}
