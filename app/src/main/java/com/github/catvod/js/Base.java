@@ -1,5 +1,8 @@
 package com.github.catvod.js;
 
+import android.os.Handler;
+import android.os.HandlerThread;
+
 import com.github.catvod.crawler.SpiderDebug;
 import com.lzy.okgo.OkGo;
 
@@ -37,29 +40,34 @@ public class Base {
     }
 
     public static void downLoadJs(String jsPath, File cache) {
-        try {
-            Response response = OkGo.<File>get(jsPath).execute();
-            InputStream is = response.body().byteStream();
-            OutputStream os = new FileOutputStream(cache);
+        HandlerThread thread = new HandlerThread("NetWork");
+        thread.start();
+        Handler handler = new Handler(thread.getLooper());
+        handler.postDelayed(() -> {
             try {
-                byte[] buffer = new byte[2048];
-                int length;
-                while ((length = is.read(buffer)) > 0) {
-                    os.write(buffer, 0, length);
-                }
-            } finally {
+                Response response = OkGo.<File>get(jsPath).execute();
+                InputStream is = response.body().byteStream();
+                OutputStream os = new FileOutputStream(cache);
                 try {
-                    is.close();
-                    os.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    byte[] buffer = new byte[2048];
+                    int length;
+                    while ((length = is.read(buffer)) > 0) {
+                        os.write(buffer, 0, length);
+                    }
+                } finally {
+                    try {
+                        is.close();
+                        os.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
+            } catch (Throwable e) {
+                e.printStackTrace();
+                SpiderDebug.log(e);
+                SpiderDebug.log("fuck 下载" + jsPath + "失败");
             }
-        } catch (Throwable e) {
-            e.printStackTrace();
-            SpiderDebug.log(e);
-            SpiderDebug.log("fuck 下载" + jsPath + "失败");
-        }
+        }, 10);
     }
 
 }
