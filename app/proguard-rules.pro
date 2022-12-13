@@ -26,7 +26,7 @@
 -keep class com.github.catvod.crawler.* { *; }
 -keep class com.github.catvod.spider.* { public <methods>; }
 -keep class com.github.catvod.parser.* { public <methods>; }
--keep class com.github.catvod.js.* { public <methods>; }
+-keep class com.github.catvod.js.* { *; }
 
 -dontwarn okio.**
 -keep class okio.**{*;}
