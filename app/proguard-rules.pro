@@ -22,11 +22,6 @@
 -flattenpackagehierarchy com.github.catvod.spider.merge
 -repackageclasses com.github.catvod.spider.merge
 
-# Spider
--keep class com.github.catvod.crawler.* { *; }
--keep class com.github.catvod.spider.* { public <methods>; }
--keep class com.github.catvod.parser.* { public <methods>; }
--keep class com.github.catvod.js.* { *; }
 
 -dontwarn okio.**
 -keep class okio.**{*;}
@@ -44,6 +39,8 @@
 -dontwarn kotlinx.**
 -keep class kotlinx.**{*;}
 
+# Spider
 -keep class com.github.catvod.crawler.* { *; }
 -keep class com.github.catvod.spider.* { public <methods>; }
 -keep class com.github.catvod.parser.* { public <methods>; }
+-keep class com.github.catvod.js.* { *; }
