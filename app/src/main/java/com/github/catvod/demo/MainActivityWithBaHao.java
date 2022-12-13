@@ -24,7 +24,7 @@ public class MainActivityWithBaHao extends Activity {
             bili.init(this, "https://ghproxy.com/https://raw.githubusercontent.com/ronghuaxueleng/my_tv_soft/filter_interface/sties/json/8hysw.json");
             try {
                 String s = bili.playerContent("1", "/play/37163-0-0.html", new ArrayList<>());
-                System.out.println();
+                System.out.println(s);
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (Exception e) {
