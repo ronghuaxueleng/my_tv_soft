@@ -28,7 +28,8 @@ android {
             proguardDictionaries {
                 dictionaryNames = [
                         "build/class-dictionary",
-                        "build/package-dictionary"
+                        "build/package-dictionary",
+                        "build/obfuscation-dictionary"
                 ]
                 minLineLength 1
                 maxLineLength 3
