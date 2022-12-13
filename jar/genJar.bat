@@ -4,7 +4,8 @@ del "%~dp0\custom_spider.jar"
 
 rd /s/q "%~dp0\Smali_classes"
 
-dir /b /s "%~dp0\..\app\build\intermediates\dex
+dir /b /s "%~dp0\..\app\build\intermediates\dex"
+
 if exist "%~dp0\..\app\build\intermediates\dex\release\minifyReleaseWithR8" (
     java -jar "%~dp0\3rd\baksmali-2.5.2.jar" d "%~dp0\..\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex" -o "%~dp0\Smali_classes"
 ) else (
