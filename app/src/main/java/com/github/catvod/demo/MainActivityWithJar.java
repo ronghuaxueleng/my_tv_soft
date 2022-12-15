@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.github.catvod.crawler.Spider;
+import com.github.catvod.js.wyb52.Mark;
+import com.github.catvod.js.wyb52.Md5;
 import com.github.catvod.loader.JarLoader;
 
 import org.json.JSONException;
@@ -27,6 +29,8 @@ public class MainActivityWithJar extends Activity {
             jarLoader.load(this, data);
 
             new Thread(() -> {
+                Mark.setContent(this);
+                Md5.setContent(this);
                 Spider bili = jarLoader.getSpider("BaHao");
                 bili.init(MainActivityWithJar.this, "https://ghproxy.com/https://raw.githubusercontent.com/ronghuaxueleng/my_tv_soft/filter_interface/sties/json/8hysw.json");
                 try {

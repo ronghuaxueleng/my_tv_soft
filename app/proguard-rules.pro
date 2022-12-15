@@ -37,8 +37,13 @@
 
 -dontwarn javax.script.**
 -keep class javax.script.**{*;}
+-dontwarn sun.**
+-keep class sun.**{*;}
 -dontwarn com.sun.script.**
 -keep class com.sun.script.**{*;}
+-dontwarn org.mozilla.**
+-keep class org.mozilla.**{*;}
+
 -dontwarn okio.**
 -keep class okio.**{*;}
 -dontwarn com.squareup.okhttp.**

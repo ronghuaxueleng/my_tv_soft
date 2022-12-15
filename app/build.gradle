@@ -37,13 +37,13 @@ android {
 }
 
 dependencies {
-    implementation "org.jsoup:jsoup:$jsoup_version"
-    implementation "cn.wanghaomiao:JsoupXpath:$jsoupxpath_version"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation ("com.github.liujingxing.rxhttp:rxhttp:$rxhttp_version") {
+    implementation "org.jsoup:jsoup:1.15.3"
+    implementation "cn.wanghaomiao:JsoupXpath:2.5.1"
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.10"
+    implementation ("com.github.liujingxing.rxhttp:rxhttp:2.6.5") {
         exclude group: "com.squareup.okhttp3"
     }
-    annotationProcessor "com.github.liujingxing.rxhttp:rxhttp-compiler:$rxhttp_version"
+    annotationProcessor "com.github.liujingxing.rxhttp:rxhttp-compiler:2.6.5"
     implementation 'io.apisense:rhino-android:1.1.1'
     implementation 'com.lzy.net:okgo:3.0.4'
 }

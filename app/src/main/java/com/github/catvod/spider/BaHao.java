@@ -17,6 +17,7 @@ import com.github.catvod.js.wyb52.Md5;
 import com.github.catvod.net.OkHttpUtil;
 import com.github.catvod.parser.AAencode;
 import com.github.catvod.utils.Misc;
+import com.sun.script.javascript.RhinoScriptEngineFactory;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,7 +39,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 
 /**
  * 8号影院
@@ -52,8 +52,7 @@ public class BaHao extends Spider {
     private JSONObject ext;
     private Context context;
 
-    private final ScriptEngineManager manager = new ScriptEngineManager();
-    private final ScriptEngine engine = manager.getEngineByName("javascript");
+    private final ScriptEngine engine = new RhinoScriptEngineFactory().getScriptEngine();
 
     // js注释正则
     String jsNotes = "[^:]//.*|/\\*(\\s|.)*?\\*\\/";
@@ -193,15 +192,15 @@ public class BaHao extends Spider {
                     }
 
                     if (muted.text().contains("地区")) {
-                        vod.setVodArea(muted.nextElementSibling().text());
+                        vod.setVodArea(Objects.requireNonNull(muted.nextElementSibling()).text());
                     }
 
                     if (muted.text().contains("年份")) {
-                        vod.setVodYear(muted.nextElementSibling().text());
+                        vod.setVodYear(Objects.requireNonNull(muted.nextElementSibling()).text());
                     }
 
                     if (muted.text().contains("类型")) {
-                        vod.setTypeName(muted.nextElementSibling().text());
+                        vod.setTypeName(Objects.requireNonNull(muted.nextElementSibling()).text());
                     }
 
                     if (muted.text().contains("简介")) {
