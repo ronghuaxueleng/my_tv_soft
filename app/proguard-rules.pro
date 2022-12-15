@@ -35,7 +35,10 @@
 -flattenpackagehierarchy com.github.catvod.spider.merge
 -repackageclasses com.github.catvod.spider.merge
 
-
+-dontwarn javax.script.**
+-keep class javax.script.**{*;}
+-dontwarn com.sun.script.**
+-keep class com.sun.script.**{*;}
 -dontwarn okio.**
 -keep class okio.**{*;}
 -dontwarn com.squareup.okhttp.**

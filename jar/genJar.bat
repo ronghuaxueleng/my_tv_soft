@@ -16,6 +16,8 @@ rd /s/q "%~dp0\spider.jar\smali\com\github\catvod\spider"
 rd /s/q "%~dp0\spider.jar\smali\com\github\catvod\parser"
 
 if not exist "%~dp0\spider.jar\smali\com\github\catvod\" md "%~dp0\spider.jar\smali\com\github\catvod\"
+if not exist "%~dp0\spider.jar\smali\com\sun\" md "%~dp0\spider.jar\smali\com\sun\"
+if not exist "%~dp0\spider.jar\smali\javax\" md "%~dp0\spider.jar\smali\javax\"
 
 if "%1" == "ec" (
     java -Dfile.encoding=utf-8 -jar "%~dp0\3rd\oss.jar" "%~dp0\Smali_classes"
@@ -23,6 +25,8 @@ if "%1" == "ec" (
 
 move "%~dp0\Smali_classes\com\github\catvod\spider" "%~dp0\spider.jar\smali\com\github\catvod\"
 move "%~dp0\Smali_classes\com\github\catvod\parser" "%~dp0\spider.jar\smali\com\github\catvod\"
+move "%~dp0\Smali_classes\com\sun\script" "%~dp0\spider.jar\smali\com\sun\"
+move "%~dp0\Smali_classes\javax\script" "%~dp0\spider.jar\smali\javax\"
 
 rd /s/q "%~dp0\Smali_classes"
 
@@ -34,6 +38,8 @@ certUtil -hashfile "%~dp0\custom_spider.jar" MD5 | find /i /v "md5" | find /i /v
 
 rd /s/q "%~dp0\spider.jar\smali\com\github\catvod\spider"
 rd /s/q "%~dp0\spider.jar\smali\com\github\catvod\parser"
+rd /s/q "%~dp0\spider.jar\smali\com\sun"
+rd /s/q "%~dp0\spider.jar\smali\javax"
 
 rd /s/q "%~dp0\spider.jar\build"
 rd /s/q "%~dp0\spider.jar\dist"
