@@ -69,6 +69,11 @@
             "name": "OK解析",
             "type": 1,
             "url": "https://okjx.cc/?url="
+        },
+        {
+            "name": "jx",
+            "type": 1,
+            "url": "https://jx.jsonplayer.com/player/?url="
         }
     ],
     "flags": [
