@@ -74,6 +74,16 @@
             "name": "jx",
             "type": 1,
             "url": "https://jx.jsonplayer.com/player/?url="
+        },
+        {
+            "name": "jiexi",
+            "type": 1,
+            "url": "https://jx.777jiexi.com/player/?url="
+        },
+        {
+            "name": "08bk",
+            "type": 1,
+            "url": "https://2.08bk.com/?url="
         }
     ],
     "flags": [
