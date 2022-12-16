@@ -64,6 +64,11 @@
             "name": "线路02",
             "type": 1,
             "url": "http://rxjx.kuanjv.com/allm3u8.php?url="
+        },
+        {
+            "name": "OK解析",
+            "type": 1,
+            "url": "https://okjx.cc/?url="
         }
     ],
     "flags": [
