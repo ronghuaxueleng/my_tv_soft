@@ -17,7 +17,6 @@ import com.github.catvod.utils.Trans;
 
 import org.json.JSONObject;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -131,10 +130,10 @@ public class AList extends Spider {
     private Item getDetail(String id) {
         try {
             String key = id.contains("/") ? id.substring(0, id.indexOf("/")) : id;
-            String path = id.contains("/") ? id.substring(id.indexOf("/") + 1) : "";
+            String path = id.contains("/") ? id.substring(id.indexOf("/")) : "";
             Drive drive = getDrive(key);
             JSONObject params = new JSONObject();
-            params.put("path", URLEncoder.encode(path));
+            params.put("path", path);
             params.put("password", drive.getPassword());
             String response = OkHttpUtil.postJson(drive.getApi(), params.toString());
             return Item.objectFrom(getDetailJson(drive.isNew(), response));
@@ -146,10 +145,10 @@ public class AList extends Spider {
     private List<Item> getList(String id, boolean filter) {
         try {
             String key = id.contains("/") ? id.substring(0, id.indexOf("/")) : id;
-            String path = id.contains("/") ? id.substring(id.indexOf("/") + 1) : "";
+            String path = id.contains("/") ? id.substring(id.indexOf("/")) : "";
             Drive drive = getDrive(key);
             JSONObject params = new JSONObject();
-            params.put("path", URLEncoder.encode(path));
+            params.put("path", path);
             params.put("password", drive.getPassword());
             String response = OkHttpUtil.postJson(drive.listApi(), params.toString());
             List<Item> items = Item.arrayFrom(getListJson(drive.isNew(), response));
