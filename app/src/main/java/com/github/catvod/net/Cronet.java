@@ -8,12 +8,14 @@ import org.chromium.net.CronetEngine;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Dns;
 import okhttp3.OkHttpClient;
 
 public class Cronet {
+
+    public static final String POST = "POST";
+    public static final String GET = "GET";
 
     private final OkHttpClient noRedirect;
     private final OkHttpClient client;
@@ -32,7 +34,17 @@ public class Cronet {
     }
 
     private OkHttpClient.Builder getBuilder() {
-        return new OkHttpClient.Builder().dns(safeDns()).addInterceptor(CronetInterceptor.newBuilder(new CronetEngine.Builder(Init.context()).build()).build()).callTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).connectTimeout(30, TimeUnit.SECONDS).retryOnConnectionFailure(true).hostnameVerifier(SSLSocketFactoryCompat.hostnameVerifier).sslSocketFactory(new SSLSocketFactoryCompat(), SSLSocketFactoryCompat.trustAllCert);
+        OkHttpClient.Builder builder = OkHttp.getBuilder();
+        addInterceptor(builder);
+        return builder;
+    }
+
+    private void addInterceptor(OkHttpClient.Builder builder) {
+        try {
+            builder.addInterceptor(CronetInterceptor.newBuilder(new CronetEngine.Builder(Init.context()).build()).build());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static OkHttpClient client() {
@@ -52,7 +64,7 @@ public class Cronet {
     }
 
     public static void stringNoRedirect(String url, Map<String, String> header, Map<String, List<String>> respHeader) {
-        string(noRedirect(), OkHttp.GET, url, null, null, header, respHeader);
+        string(noRedirect(), GET, url, null, null, header, respHeader);
     }
 
     public static String string(OkHttpClient client, String method, String url, String tag, Map<String, String> params, Map<String, String> header, Map<String, List<String>> respHeader) {
@@ -80,7 +92,7 @@ public class Cronet {
     }
 
     public static String string(String url, String tag, Map<String, String> params, Map<String, String> header, Map<String, List<String>> respHeader) {
-        return string(client(), OkHttp.GET, url, tag, params, header, respHeader);
+        return string(client(), GET, url, tag, params, header, respHeader);
     }
 
     public static String post(String url, Map<String, String> params) {
@@ -92,7 +104,7 @@ public class Cronet {
     }
 
     public static String post(String url, Map<String, String> params, Map<String, String> header, Map<String, List<String>> respHeader) {
-        return string(client(), OkHttp.POST, url, null, params, header, respHeader);
+        return string(client(), POST, url, null, params, header, respHeader);
     }
 
     public static String postJson(String url, String json) {
@@ -100,7 +112,7 @@ public class Cronet {
     }
 
     public static String postJson(String url, String json, Map<String, String> header) {
-        return new OkRequest(OkHttp.POST, url, json, header).execute(client());
+        return new OkRequest(POST, url, json, header).execute(client());
     }
 
     public static String getRedirectLocation(Map<String, List<String>> headers) {
