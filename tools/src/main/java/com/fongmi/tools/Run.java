@@ -12,10 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Scanner;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 
 public class Run {
 
@@ -24,7 +20,7 @@ public class Run {
     private final Gson gson;
 
     public static void main(String[] args) throws IOException {
-        new Run().start();
+        new Run().start("http://home.jundie.top:81/Cat/tv/live.txt");
     }
 
     public Run() {
@@ -33,14 +29,9 @@ public class Run {
         gson = new Gson().newBuilder().disableHtmlEscaping().setPrettyPrinting().create();
     }
 
-    private void start() throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("請輸入網址或檔名：");
-        String text = scanner.nextLine();
-        if (text.startsWith("http")) parse(new OkHttpClient().newCall(new Request.Builder().url(text).build()).execute().body().string());
-        else parse(Util.getFile(getClass(), text));
+    private void start(String text) throws IOException {
         //parseTxt(Util.getFile(getClass(), "live.txt"));
-        System.out.println(gson.toJson(groups));
+		parse(Util.call(text));
         writeFile();
     }
 
@@ -84,8 +75,8 @@ public class Run {
     private void combine(Channel channel) {
         for (Data item : data) {
             if (item.getName().contains(channel.getName())) {
-                channel.epg(item.getEpgid());
                 channel.logo(item.getLogo());
+                channel.epg(item.getEpg());
                 break;
             }
         }
