@@ -44,6 +44,7 @@ import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class API {
 
@@ -151,6 +152,11 @@ public class API {
         return true;
     }
 
+    private boolean onTimeout() {
+        stopService();
+        return false;
+    }
+
     public void checkAccessToken() {
         if (user.getAccessToken().isEmpty()) refreshAccessToken();
     }
@@ -171,10 +177,11 @@ public class API {
             if (oauth.getAccessToken().isEmpty()) oauthRequest();
             return true;
         } catch (Exception e) {
+            if (e instanceof TimeoutException) return onTimeout();
             e.printStackTrace();
             user.clean().save();
             stopService();
-            getQRCode();
+            startFlow();
             return true;
         } finally {
             while (user.getAccessToken().isEmpty()) SystemClock.sleep(250);
@@ -421,7 +428,7 @@ public class API {
         return result;
     }
 
-    private void getQRCode() {
+    private void startFlow() {
         if (Utils.isMobile()) {
             Init.run(this::showInput);
         } else {
