@@ -101,6 +101,8 @@ public class API {
     }
 
     public void setShareId(String shareId) {
+        if (!getOAuthCache().exists()) oauth.clean().save();
+        if (!getUserCache().exists()) user.clean().save();
         this.shareId = shareId;
         refreshShareToken();
     }
@@ -135,7 +137,9 @@ public class API {
 
     private String post(String url, JSONObject body) {
         url = url.startsWith("https") ? url : "https://api.aliyundrive.com/" + url;
-        return OkHttp.postJson(url, body.toString(), getHeader()).getBody();
+        OkResult result = OkHttp.postJson(url, body.toString(), getHeader());
+        SpiderDebug.log(result.getCode() + "," + url + "," + result.getBody());
+        return result.getBody();
     }
 
     private String auth(String url, String json, boolean retry) {
@@ -192,7 +196,6 @@ public class API {
             body.put("grant_type", "refresh_token");
             String result = post("https://auth.aliyundrive.com/v2/account/token", body);
             user = User.objectFrom(result).save();
-            SpiderDebug.log(user.toString());
             if (user.getAccessToken().isEmpty()) throw new Exception(result);
             return true;
         } catch (Exception e) {
@@ -355,7 +358,6 @@ public class API {
             body.put("file_id", tempIds.get(0));
             body.put("drive_id", user.getDriveId());
             String json = oauth("openFile/getDownloadUrl", body.toString(), true);
-            SpiderDebug.log(json);
             return new JSONObject(json).getString("url");
         } catch (Exception e) {
             e.printStackTrace();
@@ -375,7 +377,6 @@ public class API {
             body.put("category", "live_transcoding");
             body.put("url_expire_sec", "14400");
             String json = oauth("openFile/getVideoPreviewPlayInfo", body.toString(), true);
-            SpiderDebug.log(json);
             JSONArray taskList = new JSONObject(json).getJSONObject("video_preview_play_info").getJSONArray("live_transcoding_task_list");
             return getPreviewQuality(taskList, flag);
         } catch (Exception e) {
