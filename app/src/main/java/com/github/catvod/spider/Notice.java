@@ -7,29 +7,49 @@ import android.view.Gravity;
 import android.widget.FrameLayout;
 
 import com.github.catvod.crawler.Spider;
+import com.github.catvod.net.OkHttp;
 import com.github.catvod.ui.ScrollTextView;
 import com.github.catvod.utils.Utils;
 
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class Notice extends Spider {
 
     private static final String SPACE = "                                        ";
     private ScrollTextView view;
-    private String text;
-    private int time;
+    private String extend;
+    private int duration;
+    private String msg;
+
+    public static void show(String extend) {
+        try {
+            Notice notice = new Notice();
+            notice.init(null, extend);
+            notice.homeContent(false);
+        } catch (Exception ignored) {
+        }
+    }
 
     @Override
     public void init(Context context, String extend) {
-        super.init(context, extend);
-        String[] splits = extend.split(";");
-        this.text = splits[0];
-        this.time = splits.length > 1 ? Integer.parseInt(splits[1]) : 30;
+        this.extend = extend;
     }
 
     @Override
     public String homeContent(boolean filter) throws Exception {
-        Init.run(this::createView);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault());
+        String json = OkHttp.string(extend);
+        JSONObject object = new JSONObject(json);
+        msg = object.optString("msg");
+        duration = object.optInt("duration", 30);
+        String date = object.optString("date");
+        boolean show = msg.length() > 0 && (date.isEmpty() || new Date().after(sdf.parse(date)));
+        if (show) Init.run(this::createView);
         return "";
     }
 
@@ -42,10 +62,10 @@ public class Notice extends Spider {
 
     private void createText() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 2; i++) sb.append(SPACE).append(text);
+        for (int i = 0; i < 2; i++) sb.append(SPACE).append(msg);
         view = new ScrollTextView(Init.context());
         view.setTextSize(20);
-        view.setDuration(time);
+        view.setDuration(duration);
         view.setText(sb.toString());
         view.setTypeface(null, Typeface.BOLD);
         view.setPadding(0, Utils.dp2px(16), 0, Utils.dp2px(16));
@@ -60,7 +80,7 @@ public class Notice extends Spider {
     }
 
     private void hide() {
-        Init.run(() -> Utils.removeView(view), time * 1000);
+        Init.run(() -> Utils.removeView(view), duration * 1000);
     }
 
     private void setColor() {
