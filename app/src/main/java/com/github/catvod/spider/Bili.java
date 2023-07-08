@@ -260,14 +260,27 @@ public class Bili extends Spider {
     private void getQRCode() {
         String json = OkHttp.string("https://passport.bilibili.com/x/passport-login/web/qrcode/generate?source=main-mini");
         Data data = Resp.objectFrom(json).getData();
-        Init.run(() -> showQRCode(data));
+        Init.run(() -> openApp1(data));
     }
 
-    private void openApp(Data data) {
+    private Intent getIntent(String pkgName, Data data) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setClassName(pkgName, "tv.danmaku.bili.ui.intent.IntentHandlerActivity");
+        intent.setData(Uri.parse(data.getUrl()));
+        return intent;
+    }
+
+    private void openApp1(Data data) {
         try {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(data.getUrl()));
-            Init.getActivity().startActivity(intent);
+            Init.getActivity().startActivity(getIntent("tv.danmaku.bili", data));
+        } catch (Exception e) {
+            openApp2(data);
+        }
+    }
+
+    private void openApp2(Data data) {
+        try {
+            Init.getActivity().startActivity(getIntent("com.bilibili.app.in", data));
         } catch (Exception e) {
             showQRCode(data);
         } finally {
@@ -287,7 +300,6 @@ public class Bili extends Spider {
             dialog = new AlertDialog.Builder(Init.getActivity()).setView(frame).setOnCancelListener(this::cancel).setOnDismissListener(this::dismiss).show();
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             Utils.notify("請使用 BiliBili App 掃描二維碼");
-            Init.execute(() -> startService(data));
         } catch (Exception ignored) {
         }
     }
