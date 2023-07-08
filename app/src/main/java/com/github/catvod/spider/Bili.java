@@ -3,6 +3,7 @@ package com.github.catvod.spider;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -262,6 +263,18 @@ public class Bili extends Spider {
         Init.run(() -> showQRCode(data));
     }
 
+    private void openApp(Data data) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(data.getUrl()));
+            Init.getActivity().startActivity(intent);
+        } catch (Exception e) {
+            showQRCode(data);
+        } finally {
+            Init.execute(() -> startService(data));
+        }
+    }
+
     private void showQRCode(Data data) {
         try {
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(Utils.dp2px(240), Utils.dp2px(240));
@@ -273,7 +286,7 @@ public class Bili extends Spider {
             frame.addView(image, params);
             dialog = new AlertDialog.Builder(Init.getActivity()).setView(frame).setOnCancelListener(this::cancel).setOnDismissListener(this::dismiss).show();
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            Init.show("請使用 BiliBili App 掃描二維碼");
+            Utils.notify("請使用 BiliBili App 掃描二維碼");
             Init.execute(() -> startService(data));
         } catch (Exception ignored) {
         }
@@ -299,7 +312,7 @@ public class Bili extends Spider {
         String[] splits = Uri.parse(url).getQuery().split("&");
         for (String split : splits) cookie.append(split).append(";");
         FileUtil.write(getUserCache(), this.cookie = cookie.toString());
-        Init.show("請重新進入播放頁");
+        Utils.notify("請重新進入播放頁");
         stopService();
     }
 
