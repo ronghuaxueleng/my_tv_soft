@@ -53,7 +53,7 @@ public class Data {
     }
 
     public String getDescription() {
-        return TextUtils.isEmpty(description) ? "" : description;
+        return TextUtils.isEmpty(description) ? "" : description.replace("　", "");
     }
 
     public String getPlaylist() {
@@ -69,15 +69,15 @@ public class Data {
     }
 
     public String getTypes() {
-        return types == null ? "" : getValues(types);
+        return types == null ? "" : getValues(types, false);
     }
 
     public String getActors() {
-        return actors == null ? "" : getValues(actors);
+        return actors == null ? "" : getValues(actors, true);
     }
 
     public String getDirectors() {
-        return directors == null ? "" : getValues(directors);
+        return directors == null ? "" : getValues(directors, true);
     }
 
     public List<BtboDown> getBtboDownlist() {
@@ -88,15 +88,15 @@ public class Data {
         return new Vod(getJumpId(), getTitle(), getThumbnail(), getMask());
     }
 
-    public String getPlayUrl() {
+    public String getValues(List<Value> items, boolean link) {
         StringBuilder sb = new StringBuilder();
-        for (BtboDown value : getBtboDownlist()) sb.append(value.getVal()).append("#");
+        for (Value value : items) sb.append(value.getValue(link)).append(" ");
         return Utils.substring(sb.toString());
     }
 
-    public String getValues(List<Value> items) {
+    public String getPlayUrl() {
         StringBuilder sb = new StringBuilder();
-        for (Value value : items) sb.append(value.getLink()).append(" ");
+        for (BtboDown value : getBtboDownlist()) sb.append(value.getVal()).append("#");
         return Utils.substring(sb.toString());
     }
 
@@ -105,12 +105,16 @@ public class Data {
         @SerializedName(value = "title", alternate = "name")
         private String title;
 
-        public String getTitle() {
+        private String getTitle() {
             return TextUtils.isEmpty(title) ? "" : title;
         }
 
-        public String getLink() {
+        private String getLink() {
             return String.format("[a=cr:{\"id\":\"%s\",\"name\":\"%s\"}/]%s[/a]", getTitle() + "/{pg}", getTitle(), getTitle());
+        }
+
+        public String getValue(boolean link) {
+            return link ? getLink() : getTitle();
         }
     }
 
