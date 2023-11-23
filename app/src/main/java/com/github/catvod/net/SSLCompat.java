@@ -1,7 +1,5 @@
 package com.github.catvod.net;
 
-import android.annotation.SuppressLint;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -102,9 +100,7 @@ public class SSLCompat extends SSLSocketFactory {
         if (cipherSuites != null) ssl.setEnabledCipherSuites(cipherSuites);
     }
 
-    @SuppressLint({"TrustAllX509TrustManager", "CustomX509TrustManager"})
     public static final X509TrustManager TM = new X509TrustManager() {
-
         @Override
         public void checkClientTrusted(X509Certificate[] chain, String authType) {
         }
